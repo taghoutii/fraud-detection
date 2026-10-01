@@ -1,0 +1,161 @@
+{
+  "meta": {
+    "created_at": "2026-10-01T22:14:22+00:00",
+    "model_path": "models/final_pipeline.joblib",
+    "n_test_rows": 118108,
+    "n_features": 426,
+    "test_fraud_rate": 0.034409184813899145,
+    "test_time_range": [
+      12192900,
+      15811131
+    ],
+    "seed": 42
+  },
+  "brier_score": 0.02187624613850434,
+  "mean_predicted_proba": 0.0328321053115561,
+  "observed_fraud_rate": 0.034409184813899145,
+  "uniform_bins": [
+    {
+      "bin_lower": 0.0,
+      "bin_upper": 0.1,
+      "count": 111846,
+      "mean_predicted": 0.004625003126582098,
+      "observed_fraud_rate": 0.013411297677163243
+    },
+    {
+      "bin_lower": 0.1,
+      "bin_upper": 0.2,
+      "count": 1694,
+      "mean_predicted": 0.14101432828669203,
+      "observed_fraud_rate": 0.12868949232585597
+    },
+    {
+      "bin_lower": 0.2,
+      "bin_upper": 0.30000000000000004,
+      "count": 768,
+      "mean_predicted": 0.24514449299731753,
+      "observed_fraud_rate": 0.1796875
+    },
+    {
+      "bin_lower": 0.30000000000000004,
+      "bin_upper": 0.4,
+      "count": 478,
+      "mean_predicted": 0.34816686766584026,
+      "observed_fraud_rate": 0.21338912133891214
+    },
+    {
+      "bin_lower": 0.4,
+      "bin_upper": 0.5,
+      "count": 333,
+      "mean_predicted": 0.4500794209641799,
+      "observed_fraud_rate": 0.26126126126126126
+    },
+    {
+      "bin_lower": 0.5,
+      "bin_upper": 0.6000000000000001,
+      "count": 295,
+      "mean_predicted": 0.5463744257241093,
+      "observed_fraud_rate": 0.3220338983050847
+    },
+    {
+      "bin_lower": 0.6000000000000001,
+      "bin_upper": 0.7000000000000001,
+      "count": 268,
+      "mean_predicted": 0.6493019348771261,
+      "observed_fraud_rate": 0.39925373134328357
+    },
+    {
+      "bin_lower": 0.7000000000000001,
+      "bin_upper": 0.8,
+      "count": 278,
+      "mean_predicted": 0.7517221852615819,
+      "observed_fraud_rate": 0.4460431654676259
+    },
+    {
+      "bin_lower": 0.8,
+      "bin_upper": 0.9,
+      "count": 310,
+      "mean_predicted": 0.8534055305443005,
+      "observed_fraud_rate": 0.49032258064516127
+    },
+    {
+      "bin_lower": 0.9,
+      "bin_upper": 1.0,
+      "count": 1838,
+      "mean_predicted": 0.9838242033022261,
+      "observed_fraud_rate": 0.838411316648531
+    }
+  ],
+  "quantile_bins": [
+    {
+      "bin_lower": 0.0,
+      "bin_upper": 1.2363894347610703e-05,
+      "count": 11811,
+      "mean_predicted": 5.110884033151252e-06,
+      "observed_fraud_rate": 0.001016002032004064
+    },
+    {
+      "bin_lower": 1.2363894347610703e-05,
+      "bin_upper": 4.159641442335208e-05,
+      "count": 11811,
+      "mean_predicted": 2.513138716819727e-05,
+      "observed_fraud_rate": 0.002286004572009144
+    },
+    {
+      "bin_lower": 4.159641442335208e-05,
+      "bin_upper": 0.00010055171900512018,
+      "count": 11811,
+      "mean_predicted": 6.764403773295545e-05,
+      "observed_fraud_rate": 0.003894674456015579
+    },
+    {
+      "bin_lower": 0.00010055171900512018,
+      "bin_upper": 0.00021703711193551194,
+      "count": 11810,
+      "mean_predicted": 0.0001519508684769889,
+      "observed_fraud_rate": 0.003979678238780694
+    },
+    {
+      "bin_lower": 0.00021703711193551194,
+      "bin_upper": 0.0004546983140136735,
+      "count": 11811,
+      "mean_predicted": 0.0003221427108540026,
+      "observed_fraud_rate": 0.005249343832020997
+    },
+    {
+      "bin_lower": 0.0004546983140136735,
+      "bin_upper": 0.0009706810097180183,
+      "count": 11811,
+      "mean_predicted": 0.000678854380371494,
+      "observed_fraud_rate": 0.008382016764033528
+    },
+    {
+      "bin_lower": 0.0009706810097180183,
+      "bin_upper": 0.0022137059399997172,
+      "count": 11810,
+      "mean_predicted": 0.0014934016145286399,
+      "observed_fraud_rate": 0.012616426756985606
+    },
+    {
+      "bin_lower": 0.0022137059399997172,
+      "bin_upper": 0.006094731973473801,
+      "count": 11811,
+      "mean_predicted": 0.0037414950638895374,
+      "observed_fraud_rate": 0.020743374820082972
+    },
+    {
+      "bin_lower": 0.006094731973473801,
+      "bin_upper": 0.026849114124186613,
+      "count": 11811,
+      "mean_predicted": 0.013084390847100646,
+      "observed_fraud_rate": 0.03530607061214122
+    },
+    {
+      "bin_lower": 0.026849114124186613,
+      "bin_upper": 1.0,
+      "count": 11811,
+      "mean_predicted": 0.3087455110472423,
+      "observed_fraud_rate": 0.25061383456100245
+    }
+  ]
+}
