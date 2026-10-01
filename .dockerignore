@@ -1,0 +1,19 @@
+# Keep the build context small: only app/, models/, src/, reports/results/ and
+# requirements-serve.txt are copied into the image.
+.git
+.github
+.venv
+.pytest_cache
+**/__pycache__
+**/*.pyc
+data/
+notebooks/
+tests/
+mlruns/
+reports/figures/
+reports/results/*.parquet
+reports/results/*.log
+models/*
+!models/final_pipeline.joblib
+.env
+kaggle.json

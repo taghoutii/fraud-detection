@@ -16,6 +16,10 @@ data/processed/*
 models/*.pkl
 models/*.joblib
 !models/.gitkeep
+# INTENTIONAL EXCEPTION -- do not "clean up": final_pipeline.joblib (~15 MB) is tracked on
+# purpose. The API (app/), its tests in CI, and the Docker image all load it, and a fresh
+# clone has no data to retrain it from. Every other model file stays ignored.
+!models/final_pipeline.joblib
 
 # MLflow
 mlruns/
