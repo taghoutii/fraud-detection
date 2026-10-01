@@ -8,6 +8,8 @@ shap==0.45.0
 matplotlib==3.8.4
 seaborn==0.13.2
 mlflow==2.13.0
+protobuf>=3.12,<5      # mlflow 2.13 breaks on protobuf>=5; kaggle 2.2.3 alone would pull 7.x
+setuptools<81          # mlflow 2.13 imports pkg_resources
 pyyaml==6.0.1
 joblib==1.4.2
 fastapi==0.111.0
