@@ -35,12 +35,23 @@ def add_merchant_frequency(df: pd.DataFrame, merchant_col: str = "addr1") -> tup
     df[f"{merchant_col}_merchant_freq"] = df[merchant_col].map(freq_map)
     return df, freq_map
 
-def add_amount_features(df: pd.DataFrame, entity_col: str = "card1") -> pd.DataFrame:
-    #is this purchase unusual for this card?
-    #Z-score of this transaction's amount vs the entity's historical mean/std 
+def add_amount_features(df: pd.DataFrame, entity_col: str = "card1", time_col: str = "TransactionDT") -> pd.DataFrame:
+    """
+    Is this purchase unusual for this card? Z-score of this transaction's amount
+    vs the entity's historical mean/std, computed strictly from that entity's
+    PAST transactions: shift(1) before expanding() excludes the current row
+    from its own baseline, same idea as add_time_since_last_txn's diff().
+    Cold start (fewer than 2 prior transactions) leaves mean/std undefined by
+    pandas (NaN); we set those to 0 and fall back to the raw amount difference
+    for the z-score (std replaced with 1) rather than leaking future data in.
+    """
+    df = df.sort_values(time_col).copy()
     grp = df.groupby(entity_col)["TransactionAmt"]
-    df[f"{entity_col}_amt_mean"] = grp.transform("mean")
-    df[f"{entity_col}_amt_std"] = grp.transform("std").fillna(0)
+    expanding_mean = grp.transform(lambda s: s.shift(1).expanding().mean())
+    expanding_std = grp.transform(lambda s: s.shift(1).expanding().std())
+
+    df[f"{entity_col}_amt_mean"] = expanding_mean.fillna(0)
+    df[f"{entity_col}_amt_std"] = expanding_std.fillna(0)
     df[f"{entity_col}_amt_zscore"] = (
         (df["TransactionAmt"] - df[f"{entity_col}_amt_mean"])
         / df[f"{entity_col}_amt_std"].replace(0, 1)
