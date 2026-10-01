@@ -33,4 +33,4 @@ kaggle.json
 Thumbs.db
 
 .env
-*.env
+*.envreports/results/*.log
