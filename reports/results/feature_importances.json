@@ -1,0 +1,4710 @@
+{
+  "meta": {
+    "created_at": "2026-10-01T22:14:22+00:00",
+    "model_path": "models/final_pipeline.joblib",
+    "n_test_rows": 118108,
+    "n_features": 426,
+    "test_fraud_rate": 0.034409184813899145,
+    "test_time_range": [
+      12192900,
+      15811131
+    ],
+    "seed": 42
+  },
+  "lightgbm_native": {
+    "ranked_by": "gain (total loss reduction from splits on the feature); split = number of times it was used",
+    "features": [
+      {
+        "rank": 1,
+        "feature": "V258",
+        "gain": 118752.65804758668,
+        "split": 73
+      },
+      {
+        "rank": 2,
+        "feature": "V294",
+        "gain": 85038.29861016572,
+        "split": 163
+      },
+      {
+        "rank": 3,
+        "feature": "C14",
+        "gain": 84067.5144064636,
+        "split": 1134
+      },
+      {
+        "rank": 4,
+        "feature": "card1",
+        "gain": 80198.07454755949,
+        "split": 6821
+      },
+      {
+        "rank": 5,
+        "feature": "card2",
+        "gain": 74549.05211335428,
+        "split": 5451
+      },
+      {
+        "rank": 6,
+        "feature": "TransactionAmt",
+        "gain": 74447.29602776305,
+        "split": 6348
+      },
+      {
+        "rank": 7,
+        "feature": "card1_amt_std",
+        "gain": 72064.89743225131,
+        "split": 6563
+      },
+      {
+        "rank": 8,
+        "feature": "card1_amt_mean",
+        "gain": 70564.0190337545,
+        "split": 6274
+      },
+      {
+        "rank": 9,
+        "feature": "C13",
+        "gain": 67663.76852833008,
+        "split": 2011
+      },
+      {
+        "rank": 10,
+        "feature": "C8",
+        "gain": 63962.43149969727,
+        "split": 462
+      },
+      {
+        "rank": 11,
+        "feature": "card1_amt_zscore",
+        "gain": 59658.146262579015,
+        "split": 6700
+      },
+      {
+        "rank": 12,
+        "feature": "V257",
+        "gain": 58893.53692851961,
+        "split": 49
+      },
+      {
+        "rank": 13,
+        "feature": "C1",
+        "gain": 56518.17430077493,
+        "split": 1436
+      },
+      {
+        "rank": 14,
+        "feature": "addr1_merchant_freq",
+        "gain": 56379.435592025984,
+        "split": 4125
+      },
+      {
+        "rank": 15,
+        "feature": "V70",
+        "gain": 55648.98308784887,
+        "split": 109
+      },
+      {
+        "rank": 16,
+        "feature": "addr1",
+        "gain": 55210.54390579183,
+        "split": 4444
+      },
+      {
+        "rank": 17,
+        "feature": "D15",
+        "gain": 45569.87395913154,
+        "split": 2366
+      },
+      {
+        "rank": 18,
+        "feature": "card1_time_since_last",
+        "gain": 44368.49303863954,
+        "split": 6168
+      },
+      {
+        "rank": 19,
+        "feature": "V264",
+        "gain": 44104.01313991472,
+        "split": 214
+      },
+      {
+        "rank": 20,
+        "feature": "P_emaildomain_freq_enc",
+        "gain": 41623.00656949356,
+        "split": 2608
+      },
+      {
+        "rank": 21,
+        "feature": "C5",
+        "gain": 40705.749443783425,
+        "split": 483
+      },
+      {
+        "rank": 22,
+        "feature": "D1",
+        "gain": 35633.70037190546,
+        "split": 1392
+      },
+      {
+        "rank": 23,
+        "feature": "D2",
+        "gain": 33581.8178522354,
+        "split": 1318
+      },
+      {
+        "rank": 24,
+        "feature": "C11",
+        "gain": 32922.70056144893,
+        "split": 954
+      },
+      {
+        "rank": 25,
+        "feature": "D10",
+        "gain": 30955.34569899738,
+        "split": 1678
+      },
+      {
+        "rank": 26,
+        "feature": "V317",
+        "gain": 30395.00622420013,
+        "split": 340
+      },
+      {
+        "rank": 27,
+        "feature": "card5",
+        "gain": 29039.346078000963,
+        "split": 2167
+      },
+      {
+        "rank": 28,
+        "feature": "M4_freq_enc",
+        "gain": 27358.61697411537,
+        "split": 832
+      },
+      {
+        "rank": 29,
+        "feature": "D4",
+        "gain": 26789.367802326124,
+        "split": 1407
+      },
+      {
+        "rank": 30,
+        "feature": "dist1",
+        "gain": 26554.70098124072,
+        "split": 2485
+      },
+      {
+        "rank": 31,
+        "feature": "txn_hour",
+        "gain": 26486.838220441714,
+        "split": 3818
+      },
+      {
+        "rank": 32,
+        "feature": "card6_freq_enc",
+        "gain": 21987.074537228415,
+        "split": 575
+      },
+      {
+        "rank": 33,
+        "feature": "C2",
+        "gain": 20677.802450545132,
+        "split": 1281
+      },
+      {
+        "rank": 34,
+        "feature": "C4",
+        "gain": 18569.451919810846,
+        "split": 239
+      },
+      {
+        "rank": 35,
+        "feature": "R_emaildomain_freq_enc",
+        "gain": 18451.513753548265,
+        "split": 938
+      },
+      {
+        "rank": 36,
+        "feature": "C9",
+        "gain": 17935.633427730296,
+        "split": 921
+      },
+      {
+        "rank": 37,
+        "feature": "C6",
+        "gain": 17364.90478038788,
+        "split": 999
+      },
+      {
+        "rank": 38,
+        "feature": "M6_freq_enc",
+        "gain": 17175.011020630598,
+        "split": 666
+      },
+      {
+        "rank": 39,
+        "feature": "id_31_freq_enc",
+        "gain": 16698.730975933373,
+        "split": 1839
+      },
+      {
+        "rank": 40,
+        "feature": "D8",
+        "gain": 16544.93962715799,
+        "split": 1231
+      },
+      {
+        "rank": 41,
+        "feature": "V312",
+        "gain": 15779.54318748787,
+        "split": 381
+      },
+      {
+        "rank": 42,
+        "feature": "V308",
+        "gain": 15177.022120239679,
+        "split": 492
+      },
+      {
+        "rank": 43,
+        "feature": "DeviceInfo_freq_enc",
+        "gain": 15093.787639603019,
+        "split": 1459
+      },
+      {
+        "rank": 44,
+        "feature": "D3",
+        "gain": 14754.70618643798,
+        "split": 821
+      },
+      {
+        "rank": 45,
+        "feature": "id_19",
+        "gain": 13549.225290763192,
+        "split": 1835
+      },
+      {
+        "rank": 46,
+        "feature": "card3",
+        "gain": 12912.859017873183,
+        "split": 265
+      },
+      {
+        "rank": 47,
+        "feature": "V313",
+        "gain": 12850.029512891546,
+        "split": 818
+      },
+      {
+        "rank": 48,
+        "feature": "card1_txn_count_1h",
+        "gain": 12585.558395615313,
+        "split": 1456
+      },
+      {
+        "rank": 49,
+        "feature": "D11",
+        "gain": 12482.396820415743,
+        "split": 1036
+      },
+      {
+        "rank": 50,
+        "feature": "V315",
+        "gain": 12397.728311799467,
+        "split": 587
+      },
+      {
+        "rank": 51,
+        "feature": "V201",
+        "gain": 11536.119573280215,
+        "split": 33
+      },
+      {
+        "rank": 52,
+        "feature": "V91",
+        "gain": 11368.451198354363,
+        "split": 125
+      },
+      {
+        "rank": 53,
+        "feature": "D5",
+        "gain": 10308.0453593227,
+        "split": 983
+      },
+      {
+        "rank": 54,
+        "feature": "V90",
+        "gain": 10277.079955264926,
+        "split": 111
+      },
+      {
+        "rank": 55,
+        "feature": "V307",
+        "gain": 10109.7074908684,
+        "split": 843
+      },
+      {
+        "rank": 56,
+        "feature": "V310",
+        "gain": 9956.960801898036,
+        "split": 664
+      },
+      {
+        "rank": 57,
+        "feature": "card4_freq_enc",
+        "gain": 9665.268915943801,
+        "split": 749
+      },
+      {
+        "rank": 58,
+        "feature": "C10",
+        "gain": 9664.13587155193,
+        "split": 411
+      },
+      {
+        "rank": 59,
+        "feature": "V314",
+        "gain": 9505.932373434305,
+        "split": 456
+      },
+      {
+        "rank": 60,
+        "feature": "V243",
+        "gain": 9370.409694179893,
+        "split": 48
+      },
+      {
+        "rank": 61,
+        "feature": "C12",
+        "gain": 9225.445355206728,
+        "split": 322
+      },
+      {
+        "rank": 62,
+        "feature": "V62",
+        "gain": 9182.56872716546,
+        "split": 342
+      },
+      {
+        "rank": 63,
+        "feature": "M5_freq_enc",
+        "gain": 8952.354974895716,
+        "split": 674
+      },
+      {
+        "rank": 64,
+        "feature": "ProductCD_freq_enc",
+        "gain": 8903.003122435417,
+        "split": 238
+      },
+      {
+        "rank": 65,
+        "feature": "V53",
+        "gain": 8384.422065362334,
+        "split": 348
+      },
+      {
+        "rank": 66,
+        "feature": "id_33_freq_enc",
+        "gain": 8197.984855759569,
+        "split": 650
+      },
+      {
+        "rank": 67,
+        "feature": "V281",
+        "gain": 7676.584109198302,
+        "split": 227
+      },
+      {
+        "rank": 68,
+        "feature": "V285",
+        "gain": 7217.12688524276,
+        "split": 238
+      },
+      {
+        "rank": 69,
+        "feature": "id_05",
+        "gain": 7129.7928678281605,
+        "split": 925
+      },
+      {
+        "rank": 70,
+        "feature": "V87",
+        "gain": 7125.727221343666,
+        "split": 264
+      },
+      {
+        "rank": 71,
+        "feature": "id_06",
+        "gain": 7083.707077870495,
+        "split": 890
+      },
+      {
+        "rank": 72,
+        "feature": "V283",
+        "gain": 6893.819347001612,
+        "split": 306
+      },
+      {
+        "rank": 73,
+        "feature": "V130",
+        "gain": 6738.8980408757925,
+        "split": 375
+      },
+      {
+        "rank": 74,
+        "feature": "V320",
+        "gain": 6665.890077739954,
+        "split": 209
+      },
+      {
+        "rank": 75,
+        "feature": "V54",
+        "gain": 6502.656130999327,
+        "split": 335
+      },
+      {
+        "rank": 76,
+        "feature": "id_30_freq_enc",
+        "gain": 6303.854528221767,
+        "split": 600
+      },
+      {
+        "rank": 77,
+        "feature": "V61",
+        "gain": 6300.448022156954,
+        "split": 280
+      },
+      {
+        "rank": 78,
+        "feature": "V189",
+        "gain": 6189.50784394145,
+        "split": 61
+      },
+      {
+        "rank": 79,
+        "feature": "V34",
+        "gain": 6063.519909739494,
+        "split": 62
+      },
+      {
+        "rank": 80,
+        "feature": "V83",
+        "gain": 5874.166107162833,
+        "split": 327
+      },
+      {
+        "rank": 81,
+        "feature": "V45",
+        "gain": 5691.330847397447,
+        "split": 244
+      },
+      {
+        "rank": 82,
+        "feature": "M3_freq_enc",
+        "gain": 5527.148429200053,
+        "split": 342
+      },
+      {
+        "rank": 83,
+        "feature": "id_01",
+        "gain": 5506.965341240168,
+        "split": 716
+      },
+      {
+        "rank": 84,
+        "feature": "V199",
+        "gain": 5385.496946543455,
+        "split": 20
+      },
+      {
+        "rank": 85,
+        "feature": "V12",
+        "gain": 5343.88462933898,
+        "split": 271
+      },
+      {
+        "rank": 86,
+        "feature": "V20",
+        "gain": 5137.860251128674,
+        "split": 282
+      },
+      {
+        "rank": 87,
+        "feature": "V82",
+        "gain": 5127.561183363199,
+        "split": 288
+      },
+      {
+        "rank": 88,
+        "feature": "V295",
+        "gain": 5027.061549678445,
+        "split": 44
+      },
+      {
+        "rank": 89,
+        "feature": "V127",
+        "gain": 4941.287415208295,
+        "split": 435
+      },
+      {
+        "rank": 90,
+        "feature": "D14",
+        "gain": 4876.50217141211,
+        "split": 620
+      },
+      {
+        "rank": 91,
+        "feature": "V306",
+        "gain": 4866.562850505114,
+        "split": 208
+      },
+      {
+        "rank": 92,
+        "feature": "V76",
+        "gain": 4816.259756475687,
+        "split": 308
+      },
+      {
+        "rank": 93,
+        "feature": "V102",
+        "gain": 4605.205542758107,
+        "split": 76
+      },
+      {
+        "rank": 94,
+        "feature": "D9",
+        "gain": 4481.965650990722,
+        "split": 583
+      },
+      {
+        "rank": 95,
+        "feature": "M7_freq_enc",
+        "gain": 4368.3399839401245,
+        "split": 480
+      },
+      {
+        "rank": 96,
+        "feature": "V311",
+        "gain": 4286.36884047091,
+        "split": 138
+      },
+      {
+        "rank": 97,
+        "feature": "V67",
+        "gain": 4285.1087667346,
+        "split": 168
+      },
+      {
+        "rank": 98,
+        "feature": "id_14",
+        "gain": 4236.1786505403,
+        "split": 358
+      },
+      {
+        "rank": 99,
+        "feature": "V165",
+        "gain": 4074.969371952815,
+        "split": 131
+      },
+      {
+        "rank": 100,
+        "feature": "V35",
+        "gain": 3997.6784624406137,
+        "split": 338
+      },
+      {
+        "rank": 101,
+        "feature": "DeviceType_freq_enc",
+        "gain": 3989.764821406454,
+        "split": 250
+      },
+      {
+        "rank": 102,
+        "feature": "V29",
+        "gain": 3973.733477205038,
+        "split": 105
+      },
+      {
+        "rank": 103,
+        "feature": "V128",
+        "gain": 3931.5063928905874,
+        "split": 246
+      },
+      {
+        "rank": 104,
+        "feature": "M9_freq_enc",
+        "gain": 3886.705337315798,
+        "split": 311
+      },
+      {
+        "rank": 105,
+        "feature": "V49",
+        "gain": 3875.234506850131,
+        "split": 155
+      },
+      {
+        "rank": 106,
+        "feature": "V78",
+        "gain": 3762.1894147098064,
+        "split": 223
+      },
+      {
+        "rank": 107,
+        "feature": "V44",
+        "gain": 3717.205140322447,
+        "split": 143
+      },
+      {
+        "rank": 108,
+        "feature": "V75",
+        "gain": 3503.689940392971,
+        "split": 316
+      },
+      {
+        "rank": 109,
+        "feature": "V209",
+        "gain": 3459.2274757623672,
+        "split": 61
+      },
+      {
+        "rank": 110,
+        "feature": "D6",
+        "gain": 3427.6569809801877,
+        "split": 278
+      },
+      {
+        "rank": 111,
+        "feature": "D13",
+        "gain": 3393.4117482602596,
+        "split": 202
+      },
+      {
+        "rank": 112,
+        "feature": "V36",
+        "gain": 3391.5498924553394,
+        "split": 260
+      },
+      {
+        "rank": 113,
+        "feature": "V55",
+        "gain": 3385.0055771023035,
+        "split": 143
+      },
+      {
+        "rank": 114,
+        "feature": "V282",
+        "gain": 3221.5561718828976,
+        "split": 233
+      },
+      {
+        "rank": 115,
+        "feature": "V160",
+        "gain": 3181.4382428023964,
+        "split": 86
+      },
+      {
+        "rank": 116,
+        "feature": "id_17",
+        "gain": 3158.9345863871276,
+        "split": 143
+      },
+      {
+        "rank": 117,
+        "feature": "C7",
+        "gain": 3153.349347874522,
+        "split": 142
+      },
+      {
+        "rank": 118,
+        "feature": "M8_freq_enc",
+        "gain": 3071.2312070578337,
+        "split": 430
+      },
+      {
+        "rank": 119,
+        "feature": "V131",
+        "gain": 3070.111100792885,
+        "split": 236
+      },
+      {
+        "rank": 120,
+        "feature": "V38",
+        "gain": 3029.7981025725603,
+        "split": 220
+      },
+      {
+        "rank": 121,
+        "feature": "V56",
+        "gain": 2987.13410410285,
+        "split": 121
+      },
+      {
+        "rank": 122,
+        "feature": "V99",
+        "gain": 2957.3548925817013,
+        "split": 94
+      },
+      {
+        "rank": 123,
+        "feature": "V13",
+        "gain": 2946.541606515646,
+        "split": 260
+      },
+      {
+        "rank": 124,
+        "feature": "V136",
+        "gain": 2813.2690389305353,
+        "split": 124
+      },
+      {
+        "rank": 125,
+        "feature": "V86",
+        "gain": 2779.3251326978207,
+        "split": 168
+      },
+      {
+        "rank": 126,
+        "feature": "id_38_freq_enc",
+        "gain": 2767.575259372592,
+        "split": 293
+      },
+      {
+        "rank": 127,
+        "feature": "V19",
+        "gain": 2743.8387436419725,
+        "split": 231
+      },
+      {
+        "rank": 128,
+        "feature": "M2_freq_enc",
+        "gain": 2728.5109757184982,
+        "split": 220
+      },
+      {
+        "rank": 129,
+        "feature": "V291",
+        "gain": 2647.907217800617,
+        "split": 202
+      },
+      {
+        "rank": 130,
+        "feature": "V129",
+        "gain": 2606.38504667487,
+        "split": 145
+      },
+      {
+        "rank": 131,
+        "feature": "V187",
+        "gain": 2531.4926384985447,
+        "split": 228
+      },
+      {
+        "rank": 132,
+        "feature": "id_03",
+        "gain": 2530.3466670662165,
+        "split": 145
+      },
+      {
+        "rank": 133,
+        "feature": "id_09",
+        "gain": 2491.3792466670275,
+        "split": 172
+      },
+      {
+        "rank": 134,
+        "feature": "D12",
+        "gain": 2436.040085144341,
+        "split": 281
+      },
+      {
+        "rank": 135,
+        "feature": "V296",
+        "gain": 2416.0182752273977,
+        "split": 79
+      },
+      {
+        "rank": 136,
+        "feature": "V149",
+        "gain": 2401.3349253982306,
+        "split": 55
+      },
+      {
+        "rank": 137,
+        "feature": "V133",
+        "gain": 2377.691140279174,
+        "split": 166
+      },
+      {
+        "rank": 138,
+        "feature": "V5",
+        "gain": 2366.4688575565815,
+        "split": 213
+      },
+      {
+        "rank": 139,
+        "feature": "addr2",
+        "gain": 2325.6572443395853,
+        "split": 82
+      },
+      {
+        "rank": 140,
+        "feature": "V69",
+        "gain": 2316.718088954687,
+        "split": 128
+      },
+      {
+        "rank": 141,
+        "feature": "V309",
+        "gain": 2315.8641357794404,
+        "split": 189
+      },
+      {
+        "rank": 142,
+        "feature": "V332",
+        "gain": 2243.569600209594,
+        "split": 49
+      },
+      {
+        "rank": 143,
+        "feature": "V4",
+        "gain": 2242.1658708155155,
+        "split": 182
+      },
+      {
+        "rank": 144,
+        "feature": "id_16_freq_enc",
+        "gain": 2166.1676610969007,
+        "split": 204
+      },
+      {
+        "rank": 145,
+        "feature": "V96",
+        "gain": 2090.1594760064036,
+        "split": 172
+      },
+      {
+        "rank": 146,
+        "feature": "V37",
+        "gain": 2089.9090171717107,
+        "split": 166
+      },
+      {
+        "rank": 147,
+        "feature": "V24",
+        "gain": 2021.9871807396412,
+        "split": 123
+      },
+      {
+        "rank": 148,
+        "feature": "V289",
+        "gain": 1900.8648837655783,
+        "split": 94
+      },
+      {
+        "rank": 149,
+        "feature": "id_15_freq_enc",
+        "gain": 1848.9060581624508,
+        "split": 161
+      },
+      {
+        "rank": 150,
+        "feature": "V11",
+        "gain": 1832.5185325443745,
+        "split": 141
+      },
+      {
+        "rank": 151,
+        "feature": "V97",
+        "gain": 1810.2775877057575,
+        "split": 56
+      },
+      {
+        "rank": 152,
+        "feature": "V287",
+        "gain": 1809.8418426215649,
+        "split": 61
+      },
+      {
+        "rank": 153,
+        "feature": "V77",
+        "gain": 1729.4219919890165,
+        "split": 176
+      },
+      {
+        "rank": 154,
+        "feature": "V10",
+        "gain": 1689.8314104378223,
+        "split": 155
+      },
+      {
+        "rank": 155,
+        "feature": "V145",
+        "gain": 1665.5786491334438,
+        "split": 55
+      },
+      {
+        "rank": 156,
+        "feature": "V124",
+        "gain": 1617.6883928477764,
+        "split": 83
+      },
+      {
+        "rank": 157,
+        "feature": "V74",
+        "gain": 1583.338054716587,
+        "split": 94
+      },
+      {
+        "rank": 158,
+        "feature": "V286",
+        "gain": 1571.3779363930225,
+        "split": 26
+      },
+      {
+        "rank": 159,
+        "feature": "V261",
+        "gain": 1557.4945371747017,
+        "split": 147
+      },
+      {
+        "rank": 160,
+        "feature": "V265",
+        "gain": 1544.0689356643707,
+        "split": 118
+      },
+      {
+        "rank": 161,
+        "feature": "V333",
+        "gain": 1509.5232327282429,
+        "split": 19
+      },
+      {
+        "rank": 162,
+        "feature": "V30",
+        "gain": 1491.2126663727686,
+        "split": 109
+      },
+      {
+        "rank": 163,
+        "feature": "V221",
+        "gain": 1486.120236180257,
+        "split": 177
+      },
+      {
+        "rank": 164,
+        "feature": "V47",
+        "gain": 1485.0136963874102,
+        "split": 79
+      },
+      {
+        "rank": 165,
+        "feature": "V140",
+        "gain": 1470.1027873456478,
+        "split": 53
+      },
+      {
+        "rank": 166,
+        "feature": "V126",
+        "gain": 1451.0432909727097,
+        "split": 191
+      },
+      {
+        "rank": 167,
+        "feature": "C3",
+        "gain": 1430.169156551361,
+        "split": 20
+      },
+      {
+        "rank": 168,
+        "feature": "V7",
+        "gain": 1405.5014119446278,
+        "split": 60
+      },
+      {
+        "rank": 169,
+        "feature": "V225",
+        "gain": 1379.0973429083824,
+        "split": 25
+      },
+      {
+        "rank": 170,
+        "feature": "V279",
+        "gain": 1374.5611899495125,
+        "split": 48
+      },
+      {
+        "rank": 171,
+        "feature": "V139",
+        "gain": 1373.3591718226671,
+        "split": 91
+      },
+      {
+        "rank": 172,
+        "feature": "V48",
+        "gain": 1367.054313287139,
+        "split": 158
+      },
+      {
+        "rank": 173,
+        "feature": "V217",
+        "gain": 1360.100830733776,
+        "split": 56
+      },
+      {
+        "rank": 174,
+        "feature": "V52",
+        "gain": 1359.2157174348831,
+        "split": 81
+      },
+      {
+        "rank": 175,
+        "feature": "V170",
+        "gain": 1348.3794775754213,
+        "split": 42
+      },
+      {
+        "rank": 176,
+        "feature": "V222",
+        "gain": 1346.821930244565,
+        "split": 138
+      },
+      {
+        "rank": 177,
+        "feature": "id_34_freq_enc",
+        "gain": 1331.1634083092213,
+        "split": 81
+      },
+      {
+        "rank": 178,
+        "feature": "V23",
+        "gain": 1314.7805288136005,
+        "split": 86
+      },
+      {
+        "rank": 179,
+        "feature": "V156",
+        "gain": 1308.0368010401726,
+        "split": 32
+      },
+      {
+        "rank": 180,
+        "feature": "V316",
+        "gain": 1305.5298597961664,
+        "split": 123
+      },
+      {
+        "rank": 181,
+        "feature": "V26",
+        "gain": 1296.4467268139124,
+        "split": 127
+      },
+      {
+        "rank": 182,
+        "feature": "V25",
+        "gain": 1295.5917797535658,
+        "split": 103
+      },
+      {
+        "rank": 183,
+        "feature": "V159",
+        "gain": 1282.5704678297043,
+        "split": 33
+      },
+      {
+        "rank": 184,
+        "feature": "V143",
+        "gain": 1282.2688731402159,
+        "split": 40
+      },
+      {
+        "rank": 185,
+        "feature": "V162",
+        "gain": 1274.8146340847015,
+        "split": 19
+      },
+      {
+        "rank": 186,
+        "feature": "V171",
+        "gain": 1273.4436196014285,
+        "split": 64
+      },
+      {
+        "rank": 187,
+        "feature": "V200",
+        "gain": 1271.3221488296986,
+        "split": 31
+      },
+      {
+        "rank": 188,
+        "feature": "id_32",
+        "gain": 1269.0080703906715,
+        "split": 84
+      },
+      {
+        "rank": 189,
+        "feature": "V210",
+        "gain": 1259.5023787617683,
+        "split": 52
+      },
+      {
+        "rank": 190,
+        "feature": "V208",
+        "gain": 1194.2557933740318,
+        "split": 73
+      },
+      {
+        "rank": 191,
+        "feature": "V172",
+        "gain": 1148.8002769947052,
+        "split": 8
+      },
+      {
+        "rank": 192,
+        "feature": "V298",
+        "gain": 1143.6714924126863,
+        "split": 53
+      },
+      {
+        "rank": 193,
+        "feature": "V267",
+        "gain": 1138.6009774953127,
+        "split": 104
+      },
+      {
+        "rank": 194,
+        "feature": "V318",
+        "gain": 1129.559731964022,
+        "split": 162
+      },
+      {
+        "rank": 195,
+        "feature": "V322",
+        "gain": 1100.0617505013943,
+        "split": 9
+      },
+      {
+        "rank": 196,
+        "feature": "V158",
+        "gain": 1099.1550381854177,
+        "split": 21
+      },
+      {
+        "rank": 197,
+        "feature": "V321",
+        "gain": 1087.1036543771625,
+        "split": 92
+      },
+      {
+        "rank": 198,
+        "feature": "id_37_freq_enc",
+        "gain": 1082.829066440463,
+        "split": 147
+      },
+      {
+        "rank": 199,
+        "feature": "V234",
+        "gain": 1059.7136117368937,
+        "split": 123
+      },
+      {
+        "rank": 200,
+        "feature": "V280",
+        "gain": 1039.6327254846692,
+        "split": 111
+      },
+      {
+        "rank": 201,
+        "feature": "id_11",
+        "gain": 1033.5601446036017,
+        "split": 153
+      },
+      {
+        "rank": 202,
+        "feature": "V166",
+        "gain": 1030.798520570621,
+        "split": 54
+      },
+      {
+        "rank": 203,
+        "feature": "V81",
+        "gain": 1015.6901765465736,
+        "split": 74
+      },
+      {
+        "rank": 204,
+        "feature": "V66",
+        "gain": 1001.9062926769257,
+        "split": 136
+      },
+      {
+        "rank": 205,
+        "feature": "V248",
+        "gain": 1000.6451756954193,
+        "split": 28
+      },
+      {
+        "rank": 206,
+        "feature": "id_13",
+        "gain": 917.8286649137735,
+        "split": 87
+      },
+      {
+        "rank": 207,
+        "feature": "V271",
+        "gain": 901.844589009881,
+        "split": 75
+      },
+      {
+        "rank": 208,
+        "feature": "id_36_freq_enc",
+        "gain": 890.9301274567842,
+        "split": 54
+      },
+      {
+        "rank": 209,
+        "feature": "V301",
+        "gain": 879.6689099371433,
+        "split": 43
+      },
+      {
+        "rank": 210,
+        "feature": "id_28_freq_enc",
+        "gain": 871.7019994854927,
+        "split": 69
+      },
+      {
+        "rank": 211,
+        "feature": "V203",
+        "gain": 868.4685052763671,
+        "split": 132
+      },
+      {
+        "rank": 212,
+        "feature": "V64",
+        "gain": 857.4745542109013,
+        "split": 61
+      },
+      {
+        "rank": 213,
+        "feature": "V51",
+        "gain": 857.2960310280323,
+        "split": 66
+      },
+      {
+        "rank": 214,
+        "feature": "M1_freq_enc",
+        "gain": 854.8187657296658,
+        "split": 92
+      },
+      {
+        "rank": 215,
+        "feature": "V212",
+        "gain": 854.3427960574627,
+        "split": 48
+      },
+      {
+        "rank": 216,
+        "feature": "V3",
+        "gain": 846.5129274129868,
+        "split": 77
+      },
+      {
+        "rank": 217,
+        "feature": "V277",
+        "gain": 842.3241770714521,
+        "split": 97
+      },
+      {
+        "rank": 218,
+        "feature": "V40",
+        "gain": 830.6317620873451,
+        "split": 80
+      },
+      {
+        "rank": 219,
+        "feature": "V206",
+        "gain": 818.4477764517069,
+        "split": 36
+      },
+      {
+        "rank": 220,
+        "feature": "id_35_freq_enc",
+        "gain": 815.716183245182,
+        "split": 21
+      },
+      {
+        "rank": 221,
+        "feature": "V2",
+        "gain": 792.2717416286469,
+        "split": 73
+      },
+      {
+        "rank": 222,
+        "feature": "V43",
+        "gain": 788.5296435803175,
+        "split": 61
+      },
+      {
+        "rank": 223,
+        "feature": "V137",
+        "gain": 776.7162349373102,
+        "split": 90
+      },
+      {
+        "rank": 224,
+        "feature": "V150",
+        "gain": 774.9686349349795,
+        "split": 92
+      },
+      {
+        "rank": 225,
+        "feature": "V268",
+        "gain": 760.2689395844936,
+        "split": 57
+      },
+      {
+        "rank": 226,
+        "feature": "V63",
+        "gain": 753.4956557452679,
+        "split": 50
+      },
+      {
+        "rank": 227,
+        "feature": "V169",
+        "gain": 744.4445025920868,
+        "split": 25
+      },
+      {
+        "rank": 228,
+        "feature": "V79",
+        "gain": 743.9461347162724,
+        "split": 36
+      },
+      {
+        "rank": 229,
+        "feature": "V135",
+        "gain": 739.8334296047688,
+        "split": 67
+      },
+      {
+        "rank": 230,
+        "feature": "V335",
+        "gain": 737.3082365691662,
+        "split": 32
+      },
+      {
+        "rank": 231,
+        "feature": "V300",
+        "gain": 735.8794178068638,
+        "split": 52
+      },
+      {
+        "rank": 232,
+        "feature": "V274",
+        "gain": 725.90582716465,
+        "split": 117
+      },
+      {
+        "rank": 233,
+        "feature": "V266",
+        "gain": 723.3451639413834,
+        "split": 85
+      },
+      {
+        "rank": 234,
+        "feature": "V323",
+        "gain": 716.9518502354622,
+        "split": 19
+      },
+      {
+        "rank": 235,
+        "feature": "V205",
+        "gain": 695.3691608011723,
+        "split": 31
+      },
+      {
+        "rank": 236,
+        "feature": "V299",
+        "gain": 693.791100025177,
+        "split": 10
+      },
+      {
+        "rank": 237,
+        "feature": "V115",
+        "gain": 688.2676802873611,
+        "split": 26
+      },
+      {
+        "rank": 238,
+        "feature": "V278",
+        "gain": 683.5066463500261,
+        "split": 69
+      },
+      {
+        "rank": 239,
+        "feature": "V272",
+        "gain": 678.5466136261821,
+        "split": 71
+      },
+      {
+        "rank": 240,
+        "feature": "V59",
+        "gain": 678.4565388858318,
+        "split": 63
+      },
+      {
+        "rank": 241,
+        "feature": "V218",
+        "gain": 673.3787648379803,
+        "split": 82
+      },
+      {
+        "rank": 242,
+        "feature": "V324",
+        "gain": 672.1065642237663,
+        "split": 16
+      },
+      {
+        "rank": 243,
+        "feature": "V73",
+        "gain": 666.4853577762842,
+        "split": 57
+      },
+      {
+        "rank": 244,
+        "feature": "V60",
+        "gain": 665.734861344099,
+        "split": 66
+      },
+      {
+        "rank": 245,
+        "feature": "V71",
+        "gain": 655.6222212314606,
+        "split": 27
+      },
+      {
+        "rank": 246,
+        "feature": "id_10",
+        "gain": 652.2972192466259,
+        "split": 118
+      },
+      {
+        "rank": 247,
+        "feature": "V273",
+        "gain": 648.7179854363203,
+        "split": 56
+      },
+      {
+        "rank": 248,
+        "feature": "V144",
+        "gain": 647.2140789022669,
+        "split": 35
+      },
+      {
+        "rank": 249,
+        "feature": "V164",
+        "gain": 646.8171616215259,
+        "split": 54
+      },
+      {
+        "rank": 250,
+        "feature": "V303",
+        "gain": 634.05368485488,
+        "split": 53
+      },
+      {
+        "rank": 251,
+        "feature": "V284",
+        "gain": 625.4081997573376,
+        "split": 30
+      },
+      {
+        "rank": 252,
+        "feature": "V270",
+        "gain": 609.2852171063423,
+        "split": 55
+      },
+      {
+        "rank": 253,
+        "feature": "V33",
+        "gain": 608.5003018975258,
+        "split": 63
+      },
+      {
+        "rank": 254,
+        "feature": "V132",
+        "gain": 599.1607096195221,
+        "split": 82
+      },
+      {
+        "rank": 255,
+        "feature": "V293",
+        "gain": 598.6742991507053,
+        "split": 37
+      },
+      {
+        "rank": 256,
+        "feature": "V319",
+        "gain": 590.4323766976595,
+        "split": 76
+      },
+      {
+        "rank": 257,
+        "feature": "V292",
+        "gain": 574.9215024411678,
+        "split": 85
+      },
+      {
+        "rank": 258,
+        "feature": "V94",
+        "gain": 567.4621496275067,
+        "split": 38
+      },
+      {
+        "rank": 259,
+        "feature": "V224",
+        "gain": 562.7278350902488,
+        "split": 37
+      },
+      {
+        "rank": 260,
+        "feature": "V260",
+        "gain": 562.0357076525688,
+        "split": 77
+      },
+      {
+        "rank": 261,
+        "feature": "V42",
+        "gain": 522.5010242164135,
+        "split": 49
+      },
+      {
+        "rank": 262,
+        "feature": "id_04",
+        "gain": 518.9664173722267,
+        "split": 92
+      },
+      {
+        "rank": 263,
+        "feature": "V15",
+        "gain": 518.3329225182533,
+        "split": 39
+      },
+      {
+        "rank": 264,
+        "feature": "V251",
+        "gain": 507.04241755604744,
+        "split": 58
+      },
+      {
+        "rank": 265,
+        "feature": "V163",
+        "gain": 505.13840609788895,
+        "split": 15
+      },
+      {
+        "rank": 266,
+        "feature": "V288",
+        "gain": 494.81626856327057,
+        "split": 65
+      },
+      {
+        "rank": 267,
+        "feature": "V244",
+        "gain": 493.2696053683758,
+        "split": 15
+      },
+      {
+        "rank": 268,
+        "feature": "V326",
+        "gain": 489.56901359558105,
+        "split": 12
+      },
+      {
+        "rank": 269,
+        "feature": "V134",
+        "gain": 464.40910394117236,
+        "split": 93
+      },
+      {
+        "rank": 270,
+        "feature": "V232",
+        "gain": 442.6513012647629,
+        "split": 35
+      },
+      {
+        "rank": 271,
+        "feature": "V215",
+        "gain": 441.87272180616856,
+        "split": 71
+      },
+      {
+        "rank": 272,
+        "feature": "V147",
+        "gain": 438.87564101815224,
+        "split": 17
+      },
+      {
+        "rank": 273,
+        "feature": "V105",
+        "gain": 437.0392119586468,
+        "split": 31
+      },
+      {
+        "rank": 274,
+        "feature": "V58",
+        "gain": 436.1360404789448,
+        "split": 30
+      },
+      {
+        "rank": 275,
+        "feature": "V275",
+        "gain": 428.33569303527474,
+        "split": 56
+      },
+      {
+        "rank": 276,
+        "feature": "V250",
+        "gain": 425.24219121038914,
+        "split": 62
+      },
+      {
+        "rank": 277,
+        "feature": "V202",
+        "gain": 422.62299289624207,
+        "split": 100
+      },
+      {
+        "rank": 278,
+        "feature": "V6",
+        "gain": 412.2036364078522,
+        "split": 31
+      },
+      {
+        "rank": 279,
+        "feature": "V39",
+        "gain": 401.41354936361313,
+        "split": 76
+      },
+      {
+        "rank": 280,
+        "feature": "V245",
+        "gain": 396.77172619104385,
+        "split": 85
+      },
+      {
+        "rank": 281,
+        "feature": "V141",
+        "gain": 390.90541899204254,
+        "split": 6
+      },
+      {
+        "rank": 282,
+        "feature": "V276",
+        "gain": 380.8563466370106,
+        "split": 61
+      },
+      {
+        "rank": 283,
+        "feature": "V216",
+        "gain": 376.3877721130848,
+        "split": 48
+      },
+      {
+        "rank": 284,
+        "feature": "V269",
+        "gain": 375.9389297962189,
+        "split": 4
+      },
+      {
+        "rank": 285,
+        "feature": "V259",
+        "gain": 374.02964410185814,
+        "split": 63
+      },
+      {
+        "rank": 286,
+        "feature": "V1",
+        "gain": 373.3107470013201,
+        "split": 55
+      },
+      {
+        "rank": 287,
+        "feature": "V226",
+        "gain": 367.4215493798256,
+        "split": 18
+      },
+      {
+        "rank": 288,
+        "feature": "V197",
+        "gain": 365.6089904308319,
+        "split": 10
+      },
+      {
+        "rank": 289,
+        "feature": "V263",
+        "gain": 364.84853825811297,
+        "split": 87
+      },
+      {
+        "rank": 290,
+        "feature": "V196",
+        "gain": 364.77317130565643,
+        "split": 3
+      },
+      {
+        "rank": 291,
+        "feature": "V188",
+        "gain": 364.51937337219715,
+        "split": 26
+      },
+      {
+        "rank": 292,
+        "feature": "V167",
+        "gain": 357.53807674348354,
+        "split": 18
+      },
+      {
+        "rank": 293,
+        "feature": "V142",
+        "gain": 355.2185037136078,
+        "split": 7
+      },
+      {
+        "rank": 294,
+        "feature": "V220",
+        "gain": 350.3147452175617,
+        "split": 32
+      },
+      {
+        "rank": 295,
+        "feature": "V290",
+        "gain": 347.19743022322655,
+        "split": 39
+      },
+      {
+        "rank": 296,
+        "feature": "V16",
+        "gain": 337.167312502861,
+        "split": 22
+      },
+      {
+        "rank": 297,
+        "feature": "V338",
+        "gain": 336.0805374234915,
+        "split": 11
+      },
+      {
+        "rank": 298,
+        "feature": "V80",
+        "gain": 335.89067816734314,
+        "split": 48
+      },
+      {
+        "rank": 299,
+        "feature": "V262",
+        "gain": 335.5758225917816,
+        "split": 82
+      },
+      {
+        "rank": 300,
+        "feature": "V223",
+        "gain": 322.9563712179661,
+        "split": 22
+      },
+      {
+        "rank": 301,
+        "feature": "V219",
+        "gain": 320.8941905423999,
+        "split": 42
+      },
+      {
+        "rank": 302,
+        "feature": "V95",
+        "gain": 319.73115299642086,
+        "split": 40
+      },
+      {
+        "rank": 303,
+        "feature": "V204",
+        "gain": 318.9782118499279,
+        "split": 89
+      },
+      {
+        "rank": 304,
+        "feature": "V207",
+        "gain": 315.9628146616742,
+        "split": 46
+      },
+      {
+        "rank": 305,
+        "feature": "V57",
+        "gain": 313.06098325550556,
+        "split": 37
+      },
+      {
+        "rank": 306,
+        "feature": "V17",
+        "gain": 302.82267621159554,
+        "split": 32
+      },
+      {
+        "rank": 307,
+        "feature": "V9",
+        "gain": 302.05464604496956,
+        "split": 34
+      },
+      {
+        "rank": 308,
+        "feature": "V125",
+        "gain": 301.98817723989487,
+        "split": 28
+      },
+      {
+        "rank": 309,
+        "feature": "V214",
+        "gain": 290.1386983394623,
+        "split": 55
+      },
+      {
+        "rank": 310,
+        "feature": "V148",
+        "gain": 285.7151351571083,
+        "split": 13
+      },
+      {
+        "rank": 311,
+        "feature": "V98",
+        "gain": 285.4495773166418,
+        "split": 18
+      },
+      {
+        "rank": 312,
+        "feature": "V181",
+        "gain": 280.01740169525146,
+        "split": 3
+      },
+      {
+        "rank": 313,
+        "feature": "V46",
+        "gain": 268.2741157412529,
+        "split": 45
+      },
+      {
+        "rank": 314,
+        "feature": "V151",
+        "gain": 267.9327856852906,
+        "split": 19
+      },
+      {
+        "rank": 315,
+        "feature": "V72",
+        "gain": 266.5590543150902,
+        "split": 22
+      },
+      {
+        "rank": 316,
+        "feature": "V256",
+        "gain": 262.64564484357834,
+        "split": 45
+      },
+      {
+        "rank": 317,
+        "feature": "V329",
+        "gain": 252.54982486367226,
+        "split": 7
+      },
+      {
+        "rank": 318,
+        "feature": "V304",
+        "gain": 250.67996656894684,
+        "split": 24
+      },
+      {
+        "rank": 319,
+        "feature": "V85",
+        "gain": 248.66072750091553,
+        "split": 41
+      },
+      {
+        "rank": 320,
+        "feature": "V32",
+        "gain": 245.02368956804276,
+        "split": 17
+      },
+      {
+        "rank": 321,
+        "feature": "V336",
+        "gain": 241.98022869229317,
+        "split": 18
+      },
+      {
+        "rank": 322,
+        "feature": "V184",
+        "gain": 239.32059037685394,
+        "split": 11
+      },
+      {
+        "rank": 323,
+        "feature": "V100",
+        "gain": 235.64543682336807,
+        "split": 33
+      },
+      {
+        "rank": 324,
+        "feature": "V108",
+        "gain": 228.48884958028793,
+        "split": 23
+      },
+      {
+        "rank": 325,
+        "feature": "V182",
+        "gain": 224.21053966879845,
+        "split": 11
+      },
+      {
+        "rank": 326,
+        "feature": "V103",
+        "gain": 223.43956071138382,
+        "split": 27
+      },
+      {
+        "rank": 327,
+        "feature": "V14",
+        "gain": 222.03904676437378,
+        "split": 19
+      },
+      {
+        "rank": 328,
+        "feature": "V109",
+        "gain": 219.84684562683105,
+        "split": 7
+      },
+      {
+        "rank": 329,
+        "feature": "V302",
+        "gain": 219.68273636698723,
+        "split": 23
+      },
+      {
+        "rank": 330,
+        "feature": "V178",
+        "gain": 212.48560786247253,
+        "split": 24
+      },
+      {
+        "rank": 331,
+        "feature": "V93",
+        "gain": 211.22823038697243,
+        "split": 22
+      },
+      {
+        "rank": 332,
+        "feature": "V50",
+        "gain": 209.61128148436546,
+        "split": 28
+      },
+      {
+        "rank": 333,
+        "feature": "V253",
+        "gain": 209.34487748146057,
+        "split": 32
+      },
+      {
+        "rank": 334,
+        "feature": "V227",
+        "gain": 205.7875932753086,
+        "split": 16
+      },
+      {
+        "rank": 335,
+        "feature": "V180",
+        "gain": 204.1454539000988,
+        "split": 18
+      },
+      {
+        "rank": 336,
+        "feature": "V123",
+        "gain": 203.68533428013325,
+        "split": 19
+      },
+      {
+        "rank": 337,
+        "feature": "V233",
+        "gain": 203.00641405582428,
+        "split": 19
+      },
+      {
+        "rank": 338,
+        "feature": "V213",
+        "gain": 199.74292108416557,
+        "split": 48
+      },
+      {
+        "rank": 339,
+        "feature": "V8",
+        "gain": 198.65996745228767,
+        "split": 17
+      },
+      {
+        "rank": 340,
+        "feature": "V331",
+        "gain": 188.87277147173882,
+        "split": 15
+      },
+      {
+        "rank": 341,
+        "feature": "V161",
+        "gain": 185.55099800229073,
+        "split": 17
+      },
+      {
+        "rank": 342,
+        "feature": "id_12_freq_enc",
+        "gain": 178.00315350294113,
+        "split": 32
+      },
+      {
+        "rank": 343,
+        "feature": "V339",
+        "gain": 177.1351072192192,
+        "split": 6
+      },
+      {
+        "rank": 344,
+        "feature": "V138",
+        "gain": 152.81660294532776,
+        "split": 9
+      },
+      {
+        "rank": 345,
+        "feature": "id_29_freq_enc",
+        "gain": 152.1749013364315,
+        "split": 39
+      },
+      {
+        "rank": 346,
+        "feature": "V297",
+        "gain": 151.22938522696495,
+        "split": 11
+      },
+      {
+        "rank": 347,
+        "feature": "V84",
+        "gain": 146.52617247402668,
+        "split": 38
+      },
+      {
+        "rank": 348,
+        "feature": "V154",
+        "gain": 143.87694236636162,
+        "split": 12
+      },
+      {
+        "rank": 349,
+        "feature": "V193",
+        "gain": 142.43173487484455,
+        "split": 11
+      },
+      {
+        "rank": 350,
+        "feature": "V168",
+        "gain": 140.88489067554474,
+        "split": 29
+      },
+      {
+        "rank": 351,
+        "feature": "V190",
+        "gain": 138.86411568522453,
+        "split": 13
+      },
+      {
+        "rank": 352,
+        "feature": "V337",
+        "gain": 135.7946279644966,
+        "split": 10
+      },
+      {
+        "rank": 353,
+        "feature": "V21",
+        "gain": 135.35943254828453,
+        "split": 22
+      },
+      {
+        "rank": 354,
+        "feature": "V236",
+        "gain": 130.48037469387054,
+        "split": 12
+      },
+      {
+        "rank": 355,
+        "feature": "V175",
+        "gain": 129.2556330561638,
+        "split": 4
+      },
+      {
+        "rank": 356,
+        "feature": "V176",
+        "gain": 128.70445163547993,
+        "split": 10
+      },
+      {
+        "rank": 357,
+        "feature": "V325",
+        "gain": 123.27400207519531,
+        "split": 1
+      },
+      {
+        "rank": 358,
+        "feature": "V173",
+        "gain": 118.13285952806473,
+        "split": 5
+      },
+      {
+        "rank": 359,
+        "feature": "V146",
+        "gain": 104.56083881855011,
+        "split": 8
+      },
+      {
+        "rank": 360,
+        "feature": "V235",
+        "gain": 98.63096046447754,
+        "split": 6
+      },
+      {
+        "rank": 361,
+        "feature": "V31",
+        "gain": 98.03965693712234,
+        "split": 17
+      },
+      {
+        "rank": 362,
+        "feature": "V185",
+        "gain": 96.1635764837265,
+        "split": 12
+      },
+      {
+        "rank": 363,
+        "feature": "V246",
+        "gain": 95.58706650137901,
+        "split": 20
+      },
+      {
+        "rank": 364,
+        "feature": "V239",
+        "gain": 89.69317638874054,
+        "split": 23
+      },
+      {
+        "rank": 365,
+        "feature": "V22",
+        "gain": 87.37513780593872,
+        "split": 19
+      },
+      {
+        "rank": 366,
+        "feature": "V174",
+        "gain": 85.30178076028824,
+        "split": 13
+      },
+      {
+        "rank": 367,
+        "feature": "V18",
+        "gain": 84.9679439663887,
+        "split": 27
+      },
+      {
+        "rank": 368,
+        "feature": "V186",
+        "gain": 82.14853495359421,
+        "split": 28
+      },
+      {
+        "rank": 369,
+        "feature": "V238",
+        "gain": 81.1261356472969,
+        "split": 25
+      },
+      {
+        "rank": 370,
+        "feature": "V92",
+        "gain": 80.91397020220757,
+        "split": 20
+      },
+      {
+        "rank": 371,
+        "feature": "V211",
+        "gain": 75.58387669920921,
+        "split": 25
+      },
+      {
+        "rank": 372,
+        "feature": "V104",
+        "gain": 75.35211911797523,
+        "split": 12
+      },
+      {
+        "rank": 373,
+        "feature": "V194",
+        "gain": 72.77917337417603,
+        "split": 7
+      },
+      {
+        "rank": 374,
+        "feature": "V195",
+        "gain": 72.55558860301971,
+        "split": 6
+      },
+      {
+        "rank": 375,
+        "feature": "V249",
+        "gain": 61.27733325958252,
+        "split": 11
+      },
+      {
+        "rank": 376,
+        "feature": "V116",
+        "gain": 59.03439021110535,
+        "split": 8
+      },
+      {
+        "rank": 377,
+        "feature": "V330",
+        "gain": 54.49900442361832,
+        "split": 8
+      },
+      {
+        "rank": 378,
+        "feature": "V121",
+        "gain": 54.285128593444824,
+        "split": 3
+      },
+      {
+        "rank": 379,
+        "feature": "V334",
+        "gain": 53.50155830383301,
+        "split": 4
+      },
+      {
+        "rank": 380,
+        "feature": "V101",
+        "gain": 51.84523567557335,
+        "split": 12
+      },
+      {
+        "rank": 381,
+        "feature": "V242",
+        "gain": 51.559642910957336,
+        "split": 27
+      },
+      {
+        "rank": 382,
+        "feature": "V106",
+        "gain": 48.355092883110046,
+        "split": 7
+      },
+      {
+        "rank": 383,
+        "feature": "V153",
+        "gain": 47.819240629673004,
+        "split": 12
+      },
+      {
+        "rank": 384,
+        "feature": "V155",
+        "gain": 45.75678685307503,
+        "split": 5
+      },
+      {
+        "rank": 385,
+        "feature": "V157",
+        "gain": 45.194276034832,
+        "split": 10
+      },
+      {
+        "rank": 386,
+        "feature": "V237",
+        "gain": 45.1530199944973,
+        "split": 8
+      },
+      {
+        "rank": 387,
+        "feature": "V107",
+        "gain": 40.77859878540039,
+        "split": 1
+      },
+      {
+        "rank": 388,
+        "feature": "V255",
+        "gain": 39.63551786541939,
+        "split": 14
+      },
+      {
+        "rank": 389,
+        "feature": "V179",
+        "gain": 36.03481422364712,
+        "split": 10
+      },
+      {
+        "rank": 390,
+        "feature": "V113",
+        "gain": 35.66111093759537,
+        "split": 3
+      },
+      {
+        "rank": 391,
+        "feature": "V198",
+        "gain": 32.55529075860977,
+        "split": 11
+      },
+      {
+        "rank": 392,
+        "feature": "V254",
+        "gain": 31.99081963300705,
+        "split": 8
+      },
+      {
+        "rank": 393,
+        "feature": "V118",
+        "gain": 28.57505375146866,
+        "split": 5
+      },
+      {
+        "rank": 394,
+        "feature": "V231",
+        "gain": 27.83756622672081,
+        "split": 10
+      },
+      {
+        "rank": 395,
+        "feature": "V41",
+        "gain": 27.528157025575638,
+        "split": 9
+      },
+      {
+        "rank": 396,
+        "feature": "V88",
+        "gain": 26.85111939907074,
+        "split": 5
+      },
+      {
+        "rank": 397,
+        "feature": "V177",
+        "gain": 26.109022974967957,
+        "split": 9
+      },
+      {
+        "rank": 398,
+        "feature": "V110",
+        "gain": 25.15458881855011,
+        "split": 10
+      },
+      {
+        "rank": 399,
+        "feature": "V183",
+        "gain": 24.10838302160846,
+        "split": 9
+      },
+      {
+        "rank": 400,
+        "feature": "V112",
+        "gain": 20.8368062376976,
+        "split": 7
+      },
+      {
+        "rank": 401,
+        "feature": "V229",
+        "gain": 18.521676659584045,
+        "split": 2
+      },
+      {
+        "rank": 402,
+        "feature": "V65",
+        "gain": 11.212638139724731,
+        "split": 4
+      },
+      {
+        "rank": 403,
+        "feature": "V111",
+        "gain": 11.19335687160492,
+        "split": 5
+      },
+      {
+        "rank": 404,
+        "feature": "V230",
+        "gain": 10.790499687194824,
+        "split": 1
+      },
+      {
+        "rank": 405,
+        "feature": "V247",
+        "gain": 9.489524960517883,
+        "split": 5
+      },
+      {
+        "rank": 406,
+        "feature": "V241",
+        "gain": 9.264914959669113,
+        "split": 3
+      },
+      {
+        "rank": 407,
+        "feature": "V191",
+        "gain": 8.638772010803223,
+        "split": 3
+      },
+      {
+        "rank": 408,
+        "feature": "V152",
+        "gain": 6.56112003326416,
+        "split": 1
+      },
+      {
+        "rank": 409,
+        "feature": "V114",
+        "gain": 6.444744050502777,
+        "split": 3
+      },
+      {
+        "rank": 410,
+        "feature": "V252",
+        "gain": 3.9576700925827026,
+        "split": 2
+      },
+      {
+        "rank": 411,
+        "feature": "V327",
+        "gain": 2.1926701068878174,
+        "split": 1
+      },
+      {
+        "rank": 412,
+        "feature": "V27",
+        "gain": 1.757680058479309,
+        "split": 1
+      },
+      {
+        "rank": 413,
+        "feature": "V228",
+        "gain": 0.45457300543785095,
+        "split": 1
+      },
+      {
+        "rank": 414,
+        "feature": "V119",
+        "gain": 0.359609991312027,
+        "split": 1
+      },
+      {
+        "rank": 415,
+        "feature": "V117",
+        "gain": 0.16503700613975525,
+        "split": 1
+      },
+      {
+        "rank": 416,
+        "feature": "V28",
+        "gain": 0.0,
+        "split": 0
+      },
+      {
+        "rank": 417,
+        "feature": "V68",
+        "gain": 0.0,
+        "split": 0
+      },
+      {
+        "rank": 418,
+        "feature": "V89",
+        "gain": 0.0,
+        "split": 0
+      },
+      {
+        "rank": 419,
+        "feature": "V120",
+        "gain": 0.0,
+        "split": 0
+      },
+      {
+        "rank": 420,
+        "feature": "V122",
+        "gain": 0.0,
+        "split": 0
+      },
+      {
+        "rank": 421,
+        "feature": "V192",
+        "gain": 0.0,
+        "split": 0
+      },
+      {
+        "rank": 422,
+        "feature": "V240",
+        "gain": 0.0,
+        "split": 0
+      },
+      {
+        "rank": 423,
+        "feature": "V305",
+        "gain": 0.0,
+        "split": 0
+      },
+      {
+        "rank": 424,
+        "feature": "V328",
+        "gain": 0.0,
+        "split": 0
+      },
+      {
+        "rank": 425,
+        "feature": "id_02",
+        "gain": 0.0,
+        "split": 0
+      },
+      {
+        "rank": 426,
+        "feature": "id_20",
+        "gain": 0.0,
+        "split": 0
+      }
+    ]
+  },
+  "mean_abs_shap": {
+    "ranked_by": "mean |SHAP| over the 2000-row test sample (log-odds)",
+    "features": [
+      {
+        "rank": 1,
+        "feature": "C13",
+        "mean_abs_shap": 0.4978508949279785
+      },
+      {
+        "rank": 2,
+        "feature": "card1",
+        "mean_abs_shap": 0.30899578332901
+      },
+      {
+        "rank": 3,
+        "feature": "card2",
+        "mean_abs_shap": 0.29973092675209045
+      },
+      {
+        "rank": 4,
+        "feature": "TransactionAmt",
+        "mean_abs_shap": 0.28307706117630005
+      },
+      {
+        "rank": 5,
+        "feature": "card1_amt_mean",
+        "mean_abs_shap": 0.2612399160861969
+      },
+      {
+        "rank": 6,
+        "feature": "P_emaildomain_freq_enc",
+        "mean_abs_shap": 0.2594684064388275
+      },
+      {
+        "rank": 7,
+        "feature": "dist1",
+        "mean_abs_shap": 0.24683630466461182
+      },
+      {
+        "rank": 8,
+        "feature": "C14",
+        "mean_abs_shap": 0.2335330992937088
+      },
+      {
+        "rank": 9,
+        "feature": "C5",
+        "mean_abs_shap": 0.23030748963356018
+      },
+      {
+        "rank": 10,
+        "feature": "D11",
+        "mean_abs_shap": 0.22337913513183594
+      },
+      {
+        "rank": 11,
+        "feature": "D1",
+        "mean_abs_shap": 0.2174600511789322
+      },
+      {
+        "rank": 12,
+        "feature": "card1_amt_zscore",
+        "mean_abs_shap": 0.19385650753974915
+      },
+      {
+        "rank": 13,
+        "feature": "card1_amt_std",
+        "mean_abs_shap": 0.18531957268714905
+      },
+      {
+        "rank": 14,
+        "feature": "D2",
+        "mean_abs_shap": 0.18416985869407654
+      },
+      {
+        "rank": 15,
+        "feature": "card6_freq_enc",
+        "mean_abs_shap": 0.18161657452583313
+      },
+      {
+        "rank": 16,
+        "feature": "V70",
+        "mean_abs_shap": 0.181583970785141
+      },
+      {
+        "rank": 17,
+        "feature": "C2",
+        "mean_abs_shap": 0.18095892667770386
+      },
+      {
+        "rank": 18,
+        "feature": "D15",
+        "mean_abs_shap": 0.1789814978837967
+      },
+      {
+        "rank": 19,
+        "feature": "C1",
+        "mean_abs_shap": 0.17679855227470398
+      },
+      {
+        "rank": 20,
+        "feature": "txn_hour",
+        "mean_abs_shap": 0.17272180318832397
+      },
+      {
+        "rank": 21,
+        "feature": "addr1",
+        "mean_abs_shap": 0.17136545479297638
+      },
+      {
+        "rank": 22,
+        "feature": "addr1_merchant_freq",
+        "mean_abs_shap": 0.15771439671516418
+      },
+      {
+        "rank": 23,
+        "feature": "card1_time_since_last",
+        "mean_abs_shap": 0.15700727701187134
+      },
+      {
+        "rank": 24,
+        "feature": "C11",
+        "mean_abs_shap": 0.1569705754518509
+      },
+      {
+        "rank": 25,
+        "feature": "D10",
+        "mean_abs_shap": 0.15183165669441223
+      },
+      {
+        "rank": 26,
+        "feature": "M5_freq_enc",
+        "mean_abs_shap": 0.15014205873012543
+      },
+      {
+        "rank": 27,
+        "feature": "D4",
+        "mean_abs_shap": 0.14230835437774658
+      },
+      {
+        "rank": 28,
+        "feature": "id_31_freq_enc",
+        "mean_abs_shap": 0.1284388303756714
+      },
+      {
+        "rank": 29,
+        "feature": "card5",
+        "mean_abs_shap": 0.12716731429100037
+      },
+      {
+        "rank": 30,
+        "feature": "M4_freq_enc",
+        "mean_abs_shap": 0.12463193386793137
+      },
+      {
+        "rank": 31,
+        "feature": "id_13",
+        "mean_abs_shap": 0.11148928105831146
+      },
+      {
+        "rank": 32,
+        "feature": "R_emaildomain_freq_enc",
+        "mean_abs_shap": 0.10783533751964569
+      },
+      {
+        "rank": 33,
+        "feature": "D3",
+        "mean_abs_shap": 0.10716647654771805
+      },
+      {
+        "rank": 34,
+        "feature": "card1_txn_count_1h",
+        "mean_abs_shap": 0.10703067481517792
+      },
+      {
+        "rank": 35,
+        "feature": "M6_freq_enc",
+        "mean_abs_shap": 0.10157063603401184
+      },
+      {
+        "rank": 36,
+        "feature": "C9",
+        "mean_abs_shap": 0.09355976432561874
+      },
+      {
+        "rank": 37,
+        "feature": "ProductCD_freq_enc",
+        "mean_abs_shap": 0.09272591769695282
+      },
+      {
+        "rank": 38,
+        "feature": "C6",
+        "mean_abs_shap": 0.09207955002784729
+      },
+      {
+        "rank": 39,
+        "feature": "D8",
+        "mean_abs_shap": 0.09063687175512314
+      },
+      {
+        "rank": 40,
+        "feature": "V49",
+        "mean_abs_shap": 0.08801182359457016
+      },
+      {
+        "rank": 41,
+        "feature": "V294",
+        "mean_abs_shap": 0.08727686107158661
+      },
+      {
+        "rank": 42,
+        "feature": "C8",
+        "mean_abs_shap": 0.08143725246191025
+      },
+      {
+        "rank": 43,
+        "feature": "V91",
+        "mean_abs_shap": 0.07737825810909271
+      },
+      {
+        "rank": 44,
+        "feature": "id_19",
+        "mean_abs_shap": 0.07181461155414581
+      },
+      {
+        "rank": 45,
+        "feature": "DeviceInfo_freq_enc",
+        "mean_abs_shap": 0.07160443812608719
+      },
+      {
+        "rank": 46,
+        "feature": "id_01",
+        "mean_abs_shap": 0.07062233239412308
+      },
+      {
+        "rank": 47,
+        "feature": "D5",
+        "mean_abs_shap": 0.0666637048125267
+      },
+      {
+        "rank": 48,
+        "feature": "card3",
+        "mean_abs_shap": 0.06605000793933868
+      },
+      {
+        "rank": 49,
+        "feature": "M9_freq_enc",
+        "mean_abs_shap": 0.0627574697136879
+      },
+      {
+        "rank": 50,
+        "feature": "card4_freq_enc",
+        "mean_abs_shap": 0.06254183501005173
+      },
+      {
+        "rank": 51,
+        "feature": "id_05",
+        "mean_abs_shap": 0.056407444179058075
+      },
+      {
+        "rank": 52,
+        "feature": "D13",
+        "mean_abs_shap": 0.055138904601335526
+      },
+      {
+        "rank": 53,
+        "feature": "M7_freq_enc",
+        "mean_abs_shap": 0.05261491239070892
+      },
+      {
+        "rank": 54,
+        "feature": "M8_freq_enc",
+        "mean_abs_shap": 0.049935076385736465
+      },
+      {
+        "rank": 55,
+        "feature": "V310",
+        "mean_abs_shap": 0.049533240497112274
+      },
+      {
+        "rank": 56,
+        "feature": "V258",
+        "mean_abs_shap": 0.04927381873130798
+      },
+      {
+        "rank": 57,
+        "feature": "V312",
+        "mean_abs_shap": 0.04891708865761757
+      },
+      {
+        "rank": 58,
+        "feature": "V130",
+        "mean_abs_shap": 0.04879070445895195
+      },
+      {
+        "rank": 59,
+        "feature": "V285",
+        "mean_abs_shap": 0.045907240360975266
+      },
+      {
+        "rank": 60,
+        "feature": "M3_freq_enc",
+        "mean_abs_shap": 0.04584942013025284
+      },
+      {
+        "rank": 61,
+        "feature": "V82",
+        "mean_abs_shap": 0.044836897403001785
+      },
+      {
+        "rank": 62,
+        "feature": "D14",
+        "mean_abs_shap": 0.042342644184827805
+      },
+      {
+        "rank": 63,
+        "feature": "V45",
+        "mean_abs_shap": 0.042024627327919006
+      },
+      {
+        "rank": 64,
+        "feature": "id_14",
+        "mean_abs_shap": 0.04185765981674194
+      },
+      {
+        "rank": 65,
+        "feature": "V165",
+        "mean_abs_shap": 0.04179741069674492
+      },
+      {
+        "rank": 66,
+        "feature": "V307",
+        "mean_abs_shap": 0.04168977215886116
+      },
+      {
+        "rank": 67,
+        "feature": "C12",
+        "mean_abs_shap": 0.04068135842680931
+      },
+      {
+        "rank": 68,
+        "feature": "id_33_freq_enc",
+        "mean_abs_shap": 0.03965166211128235
+      },
+      {
+        "rank": 69,
+        "feature": "V308",
+        "mean_abs_shap": 0.03664901852607727
+      },
+      {
+        "rank": 70,
+        "feature": "id_32",
+        "mean_abs_shap": 0.03542083874344826
+      },
+      {
+        "rank": 71,
+        "feature": "V90",
+        "mean_abs_shap": 0.035175129771232605
+      },
+      {
+        "rank": 72,
+        "feature": "V12",
+        "mean_abs_shap": 0.035000406205654144
+      },
+      {
+        "rank": 73,
+        "feature": "V87",
+        "mean_abs_shap": 0.03479484096169472
+      },
+      {
+        "rank": 74,
+        "feature": "V313",
+        "mean_abs_shap": 0.034306060522794724
+      },
+      {
+        "rank": 75,
+        "feature": "V229",
+        "mean_abs_shap": 0.03425566479563713
+      },
+      {
+        "rank": 76,
+        "feature": "V11",
+        "mean_abs_shap": 0.03423673287034035
+      },
+      {
+        "rank": 77,
+        "feature": "id_06",
+        "mean_abs_shap": 0.03421612083911896
+      },
+      {
+        "rank": 78,
+        "feature": "V127",
+        "mean_abs_shap": 0.03385189548134804
+      },
+      {
+        "rank": 79,
+        "feature": "V317",
+        "mean_abs_shap": 0.03347090259194374
+      },
+      {
+        "rank": 80,
+        "feature": "V53",
+        "mean_abs_shap": 0.03325285762548447
+      },
+      {
+        "rank": 81,
+        "feature": "V83",
+        "mean_abs_shap": 0.03308000788092613
+      },
+      {
+        "rank": 82,
+        "feature": "V314",
+        "mean_abs_shap": 0.03287512809038162
+      },
+      {
+        "rank": 83,
+        "feature": "V35",
+        "mean_abs_shap": 0.03243875503540039
+      },
+      {
+        "rank": 84,
+        "feature": "V257",
+        "mean_abs_shap": 0.03193481266498566
+      },
+      {
+        "rank": 85,
+        "feature": "id_17",
+        "mean_abs_shap": 0.031219126656651497
+      },
+      {
+        "rank": 86,
+        "feature": "id_38_freq_enc",
+        "mean_abs_shap": 0.030823785811662674
+      },
+      {
+        "rank": 87,
+        "feature": "M1_freq_enc",
+        "mean_abs_shap": 0.030263429507613182
+      },
+      {
+        "rank": 88,
+        "feature": "V76",
+        "mean_abs_shap": 0.030117539688944817
+      },
+      {
+        "rank": 89,
+        "feature": "C10",
+        "mean_abs_shap": 0.029901940375566483
+      },
+      {
+        "rank": 90,
+        "feature": "V61",
+        "mean_abs_shap": 0.02958184853196144
+      },
+      {
+        "rank": 91,
+        "feature": "V54",
+        "mean_abs_shap": 0.029289022088050842
+      },
+      {
+        "rank": 92,
+        "feature": "V315",
+        "mean_abs_shap": 0.028074614703655243
+      },
+      {
+        "rank": 93,
+        "feature": "V316",
+        "mean_abs_shap": 0.027725739404559135
+      },
+      {
+        "rank": 94,
+        "feature": "V62",
+        "mean_abs_shap": 0.02764914557337761
+      },
+      {
+        "rank": 95,
+        "feature": "V187",
+        "mean_abs_shap": 0.027388012036681175
+      },
+      {
+        "rank": 96,
+        "feature": "V75",
+        "mean_abs_shap": 0.027217142283916473
+      },
+      {
+        "rank": 97,
+        "feature": "V124",
+        "mean_abs_shap": 0.026326913386583328
+      },
+      {
+        "rank": 98,
+        "feature": "V10",
+        "mean_abs_shap": 0.0262448787689209
+      },
+      {
+        "rank": 99,
+        "feature": "V30",
+        "mean_abs_shap": 0.02596033364534378
+      },
+      {
+        "rank": 100,
+        "feature": "id_30_freq_enc",
+        "mean_abs_shap": 0.025464609265327454
+      },
+      {
+        "rank": 101,
+        "feature": "V55",
+        "mean_abs_shap": 0.025280233472585678
+      },
+      {
+        "rank": 102,
+        "feature": "V282",
+        "mean_abs_shap": 0.025234786793589592
+      },
+      {
+        "rank": 103,
+        "feature": "V48",
+        "mean_abs_shap": 0.025025246664881706
+      },
+      {
+        "rank": 104,
+        "feature": "V36",
+        "mean_abs_shap": 0.024924909695982933
+      },
+      {
+        "rank": 105,
+        "feature": "V2",
+        "mean_abs_shap": 0.024630900472402573
+      },
+      {
+        "rank": 106,
+        "feature": "V283",
+        "mean_abs_shap": 0.024291010573506355
+      },
+      {
+        "rank": 107,
+        "feature": "id_11",
+        "mean_abs_shap": 0.023596664890646935
+      },
+      {
+        "rank": 108,
+        "feature": "C4",
+        "mean_abs_shap": 0.023556778207421303
+      },
+      {
+        "rank": 109,
+        "feature": "V34",
+        "mean_abs_shap": 0.021974388509988785
+      },
+      {
+        "rank": 110,
+        "feature": "D6",
+        "mean_abs_shap": 0.02181188389658928
+      },
+      {
+        "rank": 111,
+        "feature": "V221",
+        "mean_abs_shap": 0.02111958898603916
+      },
+      {
+        "rank": 112,
+        "feature": "V150",
+        "mean_abs_shap": 0.021062960848212242
+      },
+      {
+        "rank": 113,
+        "feature": "V281",
+        "mean_abs_shap": 0.02093011513352394
+      },
+      {
+        "rank": 114,
+        "feature": "DeviceType_freq_enc",
+        "mean_abs_shap": 0.02082688920199871
+      },
+      {
+        "rank": 115,
+        "feature": "V19",
+        "mean_abs_shap": 0.020644916221499443
+      },
+      {
+        "rank": 116,
+        "feature": "V3",
+        "mean_abs_shap": 0.020620737224817276
+      },
+      {
+        "rank": 117,
+        "feature": "V99",
+        "mean_abs_shap": 0.020177021622657776
+      },
+      {
+        "rank": 118,
+        "feature": "V56",
+        "mean_abs_shap": 0.020141812041401863
+      },
+      {
+        "rank": 119,
+        "feature": "V69",
+        "mean_abs_shap": 0.020105570554733276
+      },
+      {
+        "rank": 120,
+        "feature": "V13",
+        "mean_abs_shap": 0.020090756937861443
+      },
+      {
+        "rank": 121,
+        "feature": "V38",
+        "mean_abs_shap": 0.02007661759853363
+      },
+      {
+        "rank": 122,
+        "feature": "D9",
+        "mean_abs_shap": 0.020039942115545273
+      },
+      {
+        "rank": 123,
+        "feature": "V5",
+        "mean_abs_shap": 0.019605722278356552
+      },
+      {
+        "rank": 124,
+        "feature": "V4",
+        "mean_abs_shap": 0.019444448873400688
+      },
+      {
+        "rank": 125,
+        "feature": "V291",
+        "mean_abs_shap": 0.019317565485835075
+      },
+      {
+        "rank": 126,
+        "feature": "V131",
+        "mean_abs_shap": 0.01809120737016201
+      },
+      {
+        "rank": 127,
+        "feature": "V29",
+        "mean_abs_shap": 0.017751386389136314
+      },
+      {
+        "rank": 128,
+        "feature": "V128",
+        "mean_abs_shap": 0.017593948170542717
+      },
+      {
+        "rank": 129,
+        "feature": "V306",
+        "mean_abs_shap": 0.017566032707691193
+      },
+      {
+        "rank": 130,
+        "feature": "V20",
+        "mean_abs_shap": 0.01681678555905819
+      },
+      {
+        "rank": 131,
+        "feature": "V102",
+        "mean_abs_shap": 0.016046684235334396
+      },
+      {
+        "rank": 132,
+        "feature": "id_37_freq_enc",
+        "mean_abs_shap": 0.015990983694791794
+      },
+      {
+        "rank": 133,
+        "feature": "V77",
+        "mean_abs_shap": 0.01578211970627308
+      },
+      {
+        "rank": 134,
+        "feature": "V309",
+        "mean_abs_shap": 0.015255223028361797
+      },
+      {
+        "rank": 135,
+        "feature": "V189",
+        "mean_abs_shap": 0.015044878236949444
+      },
+      {
+        "rank": 136,
+        "feature": "V78",
+        "mean_abs_shap": 0.014988049864768982
+      },
+      {
+        "rank": 137,
+        "feature": "V320",
+        "mean_abs_shap": 0.014938253909349442
+      },
+      {
+        "rank": 138,
+        "feature": "M2_freq_enc",
+        "mean_abs_shap": 0.014935588464140892
+      },
+      {
+        "rank": 139,
+        "feature": "V264",
+        "mean_abs_shap": 0.013979054056107998
+      },
+      {
+        "rank": 140,
+        "feature": "V96",
+        "mean_abs_shap": 0.013977057300508022
+      },
+      {
+        "rank": 141,
+        "feature": "V37",
+        "mean_abs_shap": 0.013911249116063118
+      },
+      {
+        "rank": 142,
+        "feature": "C3",
+        "mean_abs_shap": 0.013739779591560364
+      },
+      {
+        "rank": 143,
+        "feature": "V86",
+        "mean_abs_shap": 0.01370816957205534
+      },
+      {
+        "rank": 144,
+        "feature": "V67",
+        "mean_abs_shap": 0.01330521609634161
+      },
+      {
+        "rank": 145,
+        "feature": "V228",
+        "mean_abs_shap": 0.013160351663827896
+      },
+      {
+        "rank": 146,
+        "feature": "V234",
+        "mean_abs_shap": 0.013119259849190712
+      },
+      {
+        "rank": 147,
+        "feature": "V24",
+        "mean_abs_shap": 0.013024868443608284
+      },
+      {
+        "rank": 148,
+        "feature": "V44",
+        "mean_abs_shap": 0.012835096567869186
+      },
+      {
+        "rank": 149,
+        "feature": "D12",
+        "mean_abs_shap": 0.012803611345589161
+      },
+      {
+        "rank": 150,
+        "feature": "V171",
+        "mean_abs_shap": 0.012724272906780243
+      },
+      {
+        "rank": 151,
+        "feature": "V126",
+        "mean_abs_shap": 0.012692012824118137
+      },
+      {
+        "rank": 152,
+        "feature": "V201",
+        "mean_abs_shap": 0.011964249424636364
+      },
+      {
+        "rank": 153,
+        "feature": "V133",
+        "mean_abs_shap": 0.01194209698587656
+      },
+      {
+        "rank": 154,
+        "feature": "V280",
+        "mean_abs_shap": 0.0114143630489707
+      },
+      {
+        "rank": 155,
+        "feature": "V139",
+        "mean_abs_shap": 0.011195892468094826
+      },
+      {
+        "rank": 156,
+        "feature": "id_10",
+        "mean_abs_shap": 0.011013495735824108
+      },
+      {
+        "rank": 157,
+        "feature": "V243",
+        "mean_abs_shap": 0.010808825492858887
+      },
+      {
+        "rank": 158,
+        "feature": "V14",
+        "mean_abs_shap": 0.010806670412421227
+      },
+      {
+        "rank": 159,
+        "feature": "id_03",
+        "mean_abs_shap": 0.010502120479941368
+      },
+      {
+        "rank": 160,
+        "feature": "V323",
+        "mean_abs_shap": 0.010228054597973824
+      },
+      {
+        "rank": 161,
+        "feature": "V322",
+        "mean_abs_shap": 0.010214902460575104
+      },
+      {
+        "rank": 162,
+        "feature": "V261",
+        "mean_abs_shap": 0.010050730779767036
+      },
+      {
+        "rank": 163,
+        "feature": "C7",
+        "mean_abs_shap": 0.01003678422421217
+      },
+      {
+        "rank": 164,
+        "feature": "V289",
+        "mean_abs_shap": 0.009941508993506432
+      },
+      {
+        "rank": 165,
+        "feature": "V311",
+        "mean_abs_shap": 0.009644046425819397
+      },
+      {
+        "rank": 166,
+        "feature": "V66",
+        "mean_abs_shap": 0.009623821824789047
+      },
+      {
+        "rank": 167,
+        "feature": "V136",
+        "mean_abs_shap": 0.009447052143514156
+      },
+      {
+        "rank": 168,
+        "feature": "V159",
+        "mean_abs_shap": 0.009442606009542942
+      },
+      {
+        "rank": 169,
+        "feature": "V287",
+        "mean_abs_shap": 0.009325499646365643
+      },
+      {
+        "rank": 170,
+        "feature": "V332",
+        "mean_abs_shap": 0.009271196089684963
+      },
+      {
+        "rank": 171,
+        "feature": "V260",
+        "mean_abs_shap": 0.009133534505963326
+      },
+      {
+        "rank": 172,
+        "feature": "V26",
+        "mean_abs_shap": 0.00906374305486679
+      },
+      {
+        "rank": 173,
+        "feature": "V25",
+        "mean_abs_shap": 0.008963570930063725
+      },
+      {
+        "rank": 174,
+        "feature": "V169",
+        "mean_abs_shap": 0.008871293626725674
+      },
+      {
+        "rank": 175,
+        "feature": "V295",
+        "mean_abs_shap": 0.00874237809330225
+      },
+      {
+        "rank": 176,
+        "feature": "id_09",
+        "mean_abs_shap": 0.008715980686247349
+      },
+      {
+        "rank": 177,
+        "feature": "V135",
+        "mean_abs_shap": 0.008636063896119595
+      },
+      {
+        "rank": 178,
+        "feature": "id_16_freq_enc",
+        "mean_abs_shap": 0.00858194287866354
+      },
+      {
+        "rank": 179,
+        "feature": "V267",
+        "mean_abs_shap": 0.008573172613978386
+      },
+      {
+        "rank": 180,
+        "feature": "V217",
+        "mean_abs_shap": 0.008513803593814373
+      },
+      {
+        "rank": 181,
+        "feature": "V293",
+        "mean_abs_shap": 0.00843703281134367
+      },
+      {
+        "rank": 182,
+        "feature": "V222",
+        "mean_abs_shap": 0.008432512171566486
+      },
+      {
+        "rank": 183,
+        "feature": "V71",
+        "mean_abs_shap": 0.008179515600204468
+      },
+      {
+        "rank": 184,
+        "feature": "V8",
+        "mean_abs_shap": 0.008138434030115604
+      },
+      {
+        "rank": 185,
+        "feature": "V245",
+        "mean_abs_shap": 0.007970994338393211
+      },
+      {
+        "rank": 186,
+        "feature": "V149",
+        "mean_abs_shap": 0.007862575352191925
+      },
+      {
+        "rank": 187,
+        "feature": "V279",
+        "mean_abs_shap": 0.007825779728591442
+      },
+      {
+        "rank": 188,
+        "feature": "V63",
+        "mean_abs_shap": 0.0077608488500118256
+      },
+      {
+        "rank": 189,
+        "feature": "V268",
+        "mean_abs_shap": 0.007745058741420507
+      },
+      {
+        "rank": 190,
+        "feature": "V319",
+        "mean_abs_shap": 0.0077253105118870735
+      },
+      {
+        "rank": 191,
+        "feature": "V65",
+        "mean_abs_shap": 0.007702013943344355
+      },
+      {
+        "rank": 192,
+        "feature": "addr2",
+        "mean_abs_shap": 0.00763519573956728
+      },
+      {
+        "rank": 193,
+        "feature": "V303",
+        "mean_abs_shap": 0.007629926782101393
+      },
+      {
+        "rank": 194,
+        "feature": "V46",
+        "mean_abs_shap": 0.007511495146900415
+      },
+      {
+        "rank": 195,
+        "feature": "V7",
+        "mean_abs_shap": 0.007459160406142473
+      },
+      {
+        "rank": 196,
+        "feature": "id_15_freq_enc",
+        "mean_abs_shap": 0.007385751698166132
+      },
+      {
+        "rank": 197,
+        "feature": "V47",
+        "mean_abs_shap": 0.00729343481361866
+      },
+      {
+        "rank": 198,
+        "feature": "V1",
+        "mean_abs_shap": 0.007088199723511934
+      },
+      {
+        "rank": 199,
+        "feature": "V296",
+        "mean_abs_shap": 0.007044494152069092
+      },
+      {
+        "rank": 200,
+        "feature": "V51",
+        "mean_abs_shap": 0.006895088125020266
+      },
+      {
+        "rank": 201,
+        "feature": "V154",
+        "mean_abs_shap": 0.0068686953745782375
+      },
+      {
+        "rank": 202,
+        "feature": "V167",
+        "mean_abs_shap": 0.006717760115861893
+      },
+      {
+        "rank": 203,
+        "feature": "V97",
+        "mean_abs_shap": 0.006703273858875036
+      },
+      {
+        "rank": 204,
+        "feature": "V64",
+        "mean_abs_shap": 0.006666744127869606
+      },
+      {
+        "rank": 205,
+        "feature": "V336",
+        "mean_abs_shap": 0.006620857864618301
+      },
+      {
+        "rank": 206,
+        "feature": "V321",
+        "mean_abs_shap": 0.0065381936728954315
+      },
+      {
+        "rank": 207,
+        "feature": "V203",
+        "mean_abs_shap": 0.006534137763082981
+      },
+      {
+        "rank": 208,
+        "feature": "V160",
+        "mean_abs_shap": 0.00651527987793088
+      },
+      {
+        "rank": 209,
+        "feature": "V39",
+        "mean_abs_shap": 0.006437233649194241
+      },
+      {
+        "rank": 210,
+        "feature": "V164",
+        "mean_abs_shap": 0.006376797799021006
+      },
+      {
+        "rank": 211,
+        "feature": "V52",
+        "mean_abs_shap": 0.006338831037282944
+      },
+      {
+        "rank": 212,
+        "feature": "V318",
+        "mean_abs_shap": 0.006299267522990704
+      },
+      {
+        "rank": 213,
+        "feature": "V143",
+        "mean_abs_shap": 0.006217519752681255
+      },
+      {
+        "rank": 214,
+        "feature": "V292",
+        "mean_abs_shap": 0.006137216463685036
+      },
+      {
+        "rank": 215,
+        "feature": "V74",
+        "mean_abs_shap": 0.006088798400014639
+      },
+      {
+        "rank": 216,
+        "feature": "V23",
+        "mean_abs_shap": 0.006088737864047289
+      },
+      {
+        "rank": 217,
+        "feature": "V94",
+        "mean_abs_shap": 0.006068785209208727
+      },
+      {
+        "rank": 218,
+        "feature": "V199",
+        "mean_abs_shap": 0.006059001665562391
+      },
+      {
+        "rank": 219,
+        "feature": "id_04",
+        "mean_abs_shap": 0.005955906119197607
+      },
+      {
+        "rank": 220,
+        "feature": "V251",
+        "mean_abs_shap": 0.005916107911616564
+      },
+      {
+        "rank": 221,
+        "feature": "id_35_freq_enc",
+        "mean_abs_shap": 0.005827811546623707
+      },
+      {
+        "rank": 222,
+        "feature": "V262",
+        "mean_abs_shap": 0.005755267571657896
+      },
+      {
+        "rank": 223,
+        "feature": "V58",
+        "mean_abs_shap": 0.005687808617949486
+      },
+      {
+        "rank": 224,
+        "feature": "V278",
+        "mean_abs_shap": 0.005633736494928598
+      },
+      {
+        "rank": 225,
+        "feature": "V129",
+        "mean_abs_shap": 0.005630809813737869
+      },
+      {
+        "rank": 226,
+        "feature": "V140",
+        "mean_abs_shap": 0.005599407013505697
+      },
+      {
+        "rank": 227,
+        "feature": "V81",
+        "mean_abs_shap": 0.005587710998952389
+      },
+      {
+        "rank": 228,
+        "feature": "V220",
+        "mean_abs_shap": 0.005503091495484114
+      },
+      {
+        "rank": 229,
+        "feature": "V60",
+        "mean_abs_shap": 0.00543928099796176
+      },
+      {
+        "rank": 230,
+        "feature": "V156",
+        "mean_abs_shap": 0.005359508562833071
+      },
+      {
+        "rank": 231,
+        "feature": "V59",
+        "mean_abs_shap": 0.005347876809537411
+      },
+      {
+        "rank": 232,
+        "feature": "V259",
+        "mean_abs_shap": 0.00533510884270072
+      },
+      {
+        "rank": 233,
+        "feature": "V170",
+        "mean_abs_shap": 0.005290776025503874
+      },
+      {
+        "rank": 234,
+        "feature": "V9",
+        "mean_abs_shap": 0.005263081286102533
+      },
+      {
+        "rank": 235,
+        "feature": "V40",
+        "mean_abs_shap": 0.0052278111688792706
+      },
+      {
+        "rank": 236,
+        "feature": "V224",
+        "mean_abs_shap": 0.0051460471004247665
+      },
+      {
+        "rank": 237,
+        "feature": "V277",
+        "mean_abs_shap": 0.005145495291799307
+      },
+      {
+        "rank": 238,
+        "feature": "V73",
+        "mean_abs_shap": 0.005141862202435732
+      },
+      {
+        "rank": 239,
+        "feature": "V256",
+        "mean_abs_shap": 0.005116673652082682
+      },
+      {
+        "rank": 240,
+        "feature": "id_34_freq_enc",
+        "mean_abs_shap": 0.005022346507757902
+      },
+      {
+        "rank": 241,
+        "feature": "V72",
+        "mean_abs_shap": 0.005010944791138172
+      },
+      {
+        "rank": 242,
+        "feature": "V206",
+        "mean_abs_shap": 0.0049882144667208195
+      },
+      {
+        "rank": 243,
+        "feature": "V266",
+        "mean_abs_shap": 0.004961635917425156
+      },
+      {
+        "rank": 244,
+        "feature": "V137",
+        "mean_abs_shap": 0.00489417789503932
+      },
+      {
+        "rank": 245,
+        "feature": "V200",
+        "mean_abs_shap": 0.004872762598097324
+      },
+      {
+        "rank": 246,
+        "feature": "V50",
+        "mean_abs_shap": 0.004869889002293348
+      },
+      {
+        "rank": 247,
+        "feature": "V57",
+        "mean_abs_shap": 0.004824467934668064
+      },
+      {
+        "rank": 248,
+        "feature": "V276",
+        "mean_abs_shap": 0.004736600909382105
+      },
+      {
+        "rank": 249,
+        "feature": "V33",
+        "mean_abs_shap": 0.004734257701784372
+      },
+      {
+        "rank": 250,
+        "feature": "V208",
+        "mean_abs_shap": 0.00465052854269743
+      },
+      {
+        "rank": 251,
+        "feature": "V16",
+        "mean_abs_shap": 0.0045853303745388985
+      },
+      {
+        "rank": 252,
+        "feature": "V335",
+        "mean_abs_shap": 0.004474483896046877
+      },
+      {
+        "rank": 253,
+        "feature": "V250",
+        "mean_abs_shap": 0.004468847997486591
+      },
+      {
+        "rank": 254,
+        "feature": "V288",
+        "mean_abs_shap": 0.00444250600412488
+      },
+      {
+        "rank": 255,
+        "feature": "id_36_freq_enc",
+        "mean_abs_shap": 0.004413707181811333
+      },
+      {
+        "rank": 256,
+        "feature": "V304",
+        "mean_abs_shap": 0.004337426740676165
+      },
+      {
+        "rank": 257,
+        "feature": "id_28_freq_enc",
+        "mean_abs_shap": 0.004326623398810625
+      },
+      {
+        "rank": 258,
+        "feature": "V265",
+        "mean_abs_shap": 0.004270710051059723
+      },
+      {
+        "rank": 259,
+        "feature": "V85",
+        "mean_abs_shap": 0.004263001959770918
+      },
+      {
+        "rank": 260,
+        "feature": "V338",
+        "mean_abs_shap": 0.004242511931806803
+      },
+      {
+        "rank": 261,
+        "feature": "V215",
+        "mean_abs_shap": 0.004078678786754608
+      },
+      {
+        "rank": 262,
+        "feature": "V80",
+        "mean_abs_shap": 0.004018654115498066
+      },
+      {
+        "rank": 263,
+        "feature": "V263",
+        "mean_abs_shap": 0.0040178303606808186
+      },
+      {
+        "rank": 264,
+        "feature": "V6",
+        "mean_abs_shap": 0.003995879553258419
+      },
+      {
+        "rank": 265,
+        "feature": "V284",
+        "mean_abs_shap": 0.00392497843131423
+      },
+      {
+        "rank": 266,
+        "feature": "V202",
+        "mean_abs_shap": 0.003849920118227601
+      },
+      {
+        "rank": 267,
+        "feature": "V194",
+        "mean_abs_shap": 0.003845793195068836
+      },
+      {
+        "rank": 268,
+        "feature": "V298",
+        "mean_abs_shap": 0.0038278282154351473
+      },
+      {
+        "rank": 269,
+        "feature": "V95",
+        "mean_abs_shap": 0.00378821836784482
+      },
+      {
+        "rank": 270,
+        "feature": "V141",
+        "mean_abs_shap": 0.0037837568670511246
+      },
+      {
+        "rank": 271,
+        "feature": "V226",
+        "mean_abs_shap": 0.003746211528778076
+      },
+      {
+        "rank": 272,
+        "feature": "V172",
+        "mean_abs_shap": 0.0037262062542140484
+      },
+      {
+        "rank": 273,
+        "feature": "V132",
+        "mean_abs_shap": 0.0037126813549548388
+      },
+      {
+        "rank": 274,
+        "feature": "V204",
+        "mean_abs_shap": 0.0036929084453731775
+      },
+      {
+        "rank": 275,
+        "feature": "V209",
+        "mean_abs_shap": 0.0036741828080266714
+      },
+      {
+        "rank": 276,
+        "feature": "V272",
+        "mean_abs_shap": 0.0036549048963934183
+      },
+      {
+        "rank": 277,
+        "feature": "V214",
+        "mean_abs_shap": 0.0036300208885222673
+      },
+      {
+        "rank": 278,
+        "feature": "V300",
+        "mean_abs_shap": 0.003613944398239255
+      },
+      {
+        "rank": 279,
+        "feature": "V210",
+        "mean_abs_shap": 0.003578919218853116
+      },
+      {
+        "rank": 280,
+        "feature": "V105",
+        "mean_abs_shap": 0.003577297320589423
+      },
+      {
+        "rank": 281,
+        "feature": "V148",
+        "mean_abs_shap": 0.003525814739987254
+      },
+      {
+        "rank": 282,
+        "feature": "V134",
+        "mean_abs_shap": 0.003525495296344161
+      },
+      {
+        "rank": 283,
+        "feature": "V244",
+        "mean_abs_shap": 0.0035097775980830193
+      },
+      {
+        "rank": 284,
+        "feature": "V227",
+        "mean_abs_shap": 0.003476447891443968
+      },
+      {
+        "rank": 285,
+        "feature": "V101",
+        "mean_abs_shap": 0.0034522581845521927
+      },
+      {
+        "rank": 286,
+        "feature": "V274",
+        "mean_abs_shap": 0.003420871449634433
+      },
+      {
+        "rank": 287,
+        "feature": "V212",
+        "mean_abs_shap": 0.0033740587532520294
+      },
+      {
+        "rank": 288,
+        "feature": "V43",
+        "mean_abs_shap": 0.003368454286828637
+      },
+      {
+        "rank": 289,
+        "feature": "V225",
+        "mean_abs_shap": 0.0033504951279610395
+      },
+      {
+        "rank": 290,
+        "feature": "V166",
+        "mean_abs_shap": 0.003301352960988879
+      },
+      {
+        "rank": 291,
+        "feature": "V84",
+        "mean_abs_shap": 0.003258213633671403
+      },
+      {
+        "rank": 292,
+        "feature": "V271",
+        "mean_abs_shap": 0.003252455499023199
+      },
+      {
+        "rank": 293,
+        "feature": "V249",
+        "mean_abs_shap": 0.0032441571820527315
+      },
+      {
+        "rank": 294,
+        "feature": "V297",
+        "mean_abs_shap": 0.0032312897965312004
+      },
+      {
+        "rank": 295,
+        "feature": "V218",
+        "mean_abs_shap": 0.0032306357752531767
+      },
+      {
+        "rank": 296,
+        "feature": "V115",
+        "mean_abs_shap": 0.003230336355045438
+      },
+      {
+        "rank": 297,
+        "feature": "V178",
+        "mean_abs_shap": 0.0031838829163461924
+      },
+      {
+        "rank": 298,
+        "feature": "V15",
+        "mean_abs_shap": 0.0031251756008714437
+      },
+      {
+        "rank": 299,
+        "feature": "V168",
+        "mean_abs_shap": 0.003105908166617155
+      },
+      {
+        "rank": 300,
+        "feature": "V213",
+        "mean_abs_shap": 0.0030971961095929146
+      },
+      {
+        "rank": 301,
+        "feature": "V108",
+        "mean_abs_shap": 0.0029857857152819633
+      },
+      {
+        "rank": 302,
+        "feature": "V42",
+        "mean_abs_shap": 0.0029732519760727882
+      },
+      {
+        "rank": 303,
+        "feature": "V79",
+        "mean_abs_shap": 0.0029703446198254824
+      },
+      {
+        "rank": 304,
+        "feature": "V270",
+        "mean_abs_shap": 0.0029604381415992975
+      },
+      {
+        "rank": 305,
+        "feature": "V233",
+        "mean_abs_shap": 0.0029548180755227804
+      },
+      {
+        "rank": 306,
+        "feature": "V273",
+        "mean_abs_shap": 0.0027412704657763243
+      },
+      {
+        "rank": 307,
+        "feature": "V333",
+        "mean_abs_shap": 0.002723559970036149
+      },
+      {
+        "rank": 308,
+        "feature": "V205",
+        "mean_abs_shap": 0.002678590826690197
+      },
+      {
+        "rank": 309,
+        "feature": "V100",
+        "mean_abs_shap": 0.0026690829545259476
+      },
+      {
+        "rank": 310,
+        "feature": "V145",
+        "mean_abs_shap": 0.0025982859078794718
+      },
+      {
+        "rank": 311,
+        "feature": "id_12_freq_enc",
+        "mean_abs_shap": 0.002569381846114993
+      },
+      {
+        "rank": 312,
+        "feature": "V17",
+        "mean_abs_shap": 0.002564367838203907
+      },
+      {
+        "rank": 313,
+        "feature": "V219",
+        "mean_abs_shap": 0.002539829583838582
+      },
+      {
+        "rank": 314,
+        "feature": "V21",
+        "mean_abs_shap": 0.0025294264778494835
+      },
+      {
+        "rank": 315,
+        "feature": "V92",
+        "mean_abs_shap": 0.002497776411473751
+      },
+      {
+        "rank": 316,
+        "feature": "V216",
+        "mean_abs_shap": 0.0024903721641749144
+      },
+      {
+        "rank": 317,
+        "feature": "V125",
+        "mean_abs_shap": 0.0023778851609677076
+      },
+      {
+        "rank": 318,
+        "feature": "V188",
+        "mean_abs_shap": 0.0023438401985913515
+      },
+      {
+        "rank": 319,
+        "feature": "V301",
+        "mean_abs_shap": 0.00234194821678102
+      },
+      {
+        "rank": 320,
+        "feature": "V286",
+        "mean_abs_shap": 0.002339991508051753
+      },
+      {
+        "rank": 321,
+        "feature": "V223",
+        "mean_abs_shap": 0.002306589623913169
+      },
+      {
+        "rank": 322,
+        "feature": "V275",
+        "mean_abs_shap": 0.002252169419080019
+      },
+      {
+        "rank": 323,
+        "feature": "V174",
+        "mean_abs_shap": 0.0022505398374050856
+      },
+      {
+        "rank": 324,
+        "feature": "id_29_freq_enc",
+        "mean_abs_shap": 0.0022430485114455223
+      },
+      {
+        "rank": 325,
+        "feature": "V32",
+        "mean_abs_shap": 0.002229726407676935
+      },
+      {
+        "rank": 326,
+        "feature": "V142",
+        "mean_abs_shap": 0.002181372605264187
+      },
+      {
+        "rank": 327,
+        "feature": "V180",
+        "mean_abs_shap": 0.0021494138054549694
+      },
+      {
+        "rank": 328,
+        "feature": "V93",
+        "mean_abs_shap": 0.00211210735142231
+      },
+      {
+        "rank": 329,
+        "feature": "V302",
+        "mean_abs_shap": 0.002075615804642439
+      },
+      {
+        "rank": 330,
+        "feature": "V138",
+        "mean_abs_shap": 0.0020444958936423063
+      },
+      {
+        "rank": 331,
+        "feature": "V182",
+        "mean_abs_shap": 0.0020275372080504894
+      },
+      {
+        "rank": 332,
+        "feature": "V290",
+        "mean_abs_shap": 0.001989161130040884
+      },
+      {
+        "rank": 333,
+        "feature": "V144",
+        "mean_abs_shap": 0.0019649481400847435
+      },
+      {
+        "rank": 334,
+        "feature": "V207",
+        "mean_abs_shap": 0.0019587241113185883
+      },
+      {
+        "rank": 335,
+        "feature": "V162",
+        "mean_abs_shap": 0.001958126900717616
+      },
+      {
+        "rank": 336,
+        "feature": "V211",
+        "mean_abs_shap": 0.001946262433193624
+      },
+      {
+        "rank": 337,
+        "feature": "V22",
+        "mean_abs_shap": 0.001884549274109304
+      },
+      {
+        "rank": 338,
+        "feature": "V331",
+        "mean_abs_shap": 0.0018517153803259134
+      },
+      {
+        "rank": 339,
+        "feature": "V103",
+        "mean_abs_shap": 0.0018508543726056814
+      },
+      {
+        "rank": 340,
+        "feature": "V147",
+        "mean_abs_shap": 0.0018322633113712072
+      },
+      {
+        "rank": 341,
+        "feature": "V248",
+        "mean_abs_shap": 0.0018242938676849008
+      },
+      {
+        "rank": 342,
+        "feature": "V176",
+        "mean_abs_shap": 0.0017671871464699507
+      },
+      {
+        "rank": 343,
+        "feature": "V123",
+        "mean_abs_shap": 0.0017557305982336402
+      },
+      {
+        "rank": 344,
+        "feature": "V157",
+        "mean_abs_shap": 0.0017451859312132
+      },
+      {
+        "rank": 345,
+        "feature": "V239",
+        "mean_abs_shap": 0.0017337950412184
+      },
+      {
+        "rank": 346,
+        "feature": "V198",
+        "mean_abs_shap": 0.0016989440191537142
+      },
+      {
+        "rank": 347,
+        "feature": "V186",
+        "mean_abs_shap": 0.0016482792561873794
+      },
+      {
+        "rank": 348,
+        "feature": "V195",
+        "mean_abs_shap": 0.0016389483353123069
+      },
+      {
+        "rank": 349,
+        "feature": "V118",
+        "mean_abs_shap": 0.0016233386704698205
+      },
+      {
+        "rank": 350,
+        "feature": "V324",
+        "mean_abs_shap": 0.0016083767404779792
+      },
+      {
+        "rank": 351,
+        "feature": "V238",
+        "mean_abs_shap": 0.0015764764975756407
+      },
+      {
+        "rank": 352,
+        "feature": "V242",
+        "mean_abs_shap": 0.0015645615058019757
+      },
+      {
+        "rank": 353,
+        "feature": "V241",
+        "mean_abs_shap": 0.0015131515683606267
+      },
+      {
+        "rank": 354,
+        "feature": "V235",
+        "mean_abs_shap": 0.001478950260207057
+      },
+      {
+        "rank": 355,
+        "feature": "V232",
+        "mean_abs_shap": 0.0014246264472603798
+      },
+      {
+        "rank": 356,
+        "feature": "V98",
+        "mean_abs_shap": 0.0014224420301616192
+      },
+      {
+        "rank": 357,
+        "feature": "V269",
+        "mean_abs_shap": 0.0013825615169480443
+      },
+      {
+        "rank": 358,
+        "feature": "V299",
+        "mean_abs_shap": 0.001346468343399465
+      },
+      {
+        "rank": 359,
+        "feature": "V104",
+        "mean_abs_shap": 0.001318910624831915
+      },
+      {
+        "rank": 360,
+        "feature": "V183",
+        "mean_abs_shap": 0.0013031670823693275
+      },
+      {
+        "rank": 361,
+        "feature": "V197",
+        "mean_abs_shap": 0.0012852929066866636
+      },
+      {
+        "rank": 362,
+        "feature": "V326",
+        "mean_abs_shap": 0.0012843345757573843
+      },
+      {
+        "rank": 363,
+        "feature": "V185",
+        "mean_abs_shap": 0.0012497776187956333
+      },
+      {
+        "rank": 364,
+        "feature": "V329",
+        "mean_abs_shap": 0.0012468837667256594
+      },
+      {
+        "rank": 365,
+        "feature": "V184",
+        "mean_abs_shap": 0.0011831412557512522
+      },
+      {
+        "rank": 366,
+        "feature": "V246",
+        "mean_abs_shap": 0.0011747796088457108
+      },
+      {
+        "rank": 367,
+        "feature": "V151",
+        "mean_abs_shap": 0.001170601462945342
+      },
+      {
+        "rank": 368,
+        "feature": "V231",
+        "mean_abs_shap": 0.001134189311414957
+      },
+      {
+        "rank": 369,
+        "feature": "V18",
+        "mean_abs_shap": 0.0011334131704643369
+      },
+      {
+        "rank": 370,
+        "feature": "V190",
+        "mean_abs_shap": 0.0010745588224381208
+      },
+      {
+        "rank": 371,
+        "feature": "V255",
+        "mean_abs_shap": 0.0010736645199358463
+      },
+      {
+        "rank": 372,
+        "feature": "V31",
+        "mean_abs_shap": 0.0010641436092555523
+      },
+      {
+        "rank": 373,
+        "feature": "V158",
+        "mean_abs_shap": 0.0010207528248429298
+      },
+      {
+        "rank": 374,
+        "feature": "V337",
+        "mean_abs_shap": 0.00097034708596766
+      },
+      {
+        "rank": 375,
+        "feature": "V181",
+        "mean_abs_shap": 0.0009350695181638002
+      },
+      {
+        "rank": 376,
+        "feature": "V236",
+        "mean_abs_shap": 0.000926596054341644
+      },
+      {
+        "rank": 377,
+        "feature": "V153",
+        "mean_abs_shap": 0.0009215407771989703
+      },
+      {
+        "rank": 378,
+        "feature": "V339",
+        "mean_abs_shap": 0.0008948615286499262
+      },
+      {
+        "rank": 379,
+        "feature": "V193",
+        "mean_abs_shap": 0.0008910095202736557
+      },
+      {
+        "rank": 380,
+        "feature": "V121",
+        "mean_abs_shap": 0.0008807092090137303
+      },
+      {
+        "rank": 381,
+        "feature": "V163",
+        "mean_abs_shap": 0.0008761626668274403
+      },
+      {
+        "rank": 382,
+        "feature": "V88",
+        "mean_abs_shap": 0.0008336231694556773
+      },
+      {
+        "rank": 383,
+        "feature": "V253",
+        "mean_abs_shap": 0.000750361883547157
+      },
+      {
+        "rank": 384,
+        "feature": "V155",
+        "mean_abs_shap": 0.0007476603495888412
+      },
+      {
+        "rank": 385,
+        "feature": "V175",
+        "mean_abs_shap": 0.0006893974496051669
+      },
+      {
+        "rank": 386,
+        "feature": "V254",
+        "mean_abs_shap": 0.0006881454610265791
+      },
+      {
+        "rank": 387,
+        "feature": "V110",
+        "mean_abs_shap": 0.000674103619530797
+      },
+      {
+        "rank": 388,
+        "feature": "V327",
+        "mean_abs_shap": 0.0006721223471686244
+      },
+      {
+        "rank": 389,
+        "feature": "V191",
+        "mean_abs_shap": 0.0006147765670903027
+      },
+      {
+        "rank": 390,
+        "feature": "V177",
+        "mean_abs_shap": 0.0006044884212315083
+      },
+      {
+        "rank": 391,
+        "feature": "V334",
+        "mean_abs_shap": 0.0005749727715738118
+      },
+      {
+        "rank": 392,
+        "feature": "V146",
+        "mean_abs_shap": 0.0005449239397421479
+      },
+      {
+        "rank": 393,
+        "feature": "V111",
+        "mean_abs_shap": 0.0005253711133264005
+      },
+      {
+        "rank": 394,
+        "feature": "V230",
+        "mean_abs_shap": 0.0005156143452040851
+      },
+      {
+        "rank": 395,
+        "feature": "V41",
+        "mean_abs_shap": 0.0005034219357185066
+      },
+      {
+        "rank": 396,
+        "feature": "V161",
+        "mean_abs_shap": 0.0004973112954758108
+      },
+      {
+        "rank": 397,
+        "feature": "V106",
+        "mean_abs_shap": 0.00048522534780204296
+      },
+      {
+        "rank": 398,
+        "feature": "V116",
+        "mean_abs_shap": 0.0004829823737964034
+      },
+      {
+        "rank": 399,
+        "feature": "V109",
+        "mean_abs_shap": 0.00048240876640193164
+      },
+      {
+        "rank": 400,
+        "feature": "V237",
+        "mean_abs_shap": 0.00044621419510804117
+      },
+      {
+        "rank": 401,
+        "feature": "V247",
+        "mean_abs_shap": 0.00042413451592437923
+      },
+      {
+        "rank": 402,
+        "feature": "V112",
+        "mean_abs_shap": 0.0004226566816214472
+      },
+      {
+        "rank": 403,
+        "feature": "V114",
+        "mean_abs_shap": 0.0003838394768536091
+      },
+      {
+        "rank": 404,
+        "feature": "V330",
+        "mean_abs_shap": 0.000369963061530143
+      },
+      {
+        "rank": 405,
+        "feature": "V179",
+        "mean_abs_shap": 0.00031165903783403337
+      },
+      {
+        "rank": 406,
+        "feature": "V325",
+        "mean_abs_shap": 0.0002690846158657223
+      },
+      {
+        "rank": 407,
+        "feature": "V113",
+        "mean_abs_shap": 0.00022736970277037472
+      },
+      {
+        "rank": 408,
+        "feature": "V196",
+        "mean_abs_shap": 0.00020304071949794888
+      },
+      {
+        "rank": 409,
+        "feature": "V173",
+        "mean_abs_shap": 0.0001760009618010372
+      },
+      {
+        "rank": 410,
+        "feature": "V27",
+        "mean_abs_shap": 0.00016640490503050387
+      },
+      {
+        "rank": 411,
+        "feature": "V152",
+        "mean_abs_shap": 0.0001407100207870826
+      },
+      {
+        "rank": 412,
+        "feature": "V107",
+        "mean_abs_shap": 0.00012539395538624376
+      },
+      {
+        "rank": 413,
+        "feature": "V119",
+        "mean_abs_shap": 9.711215534480289e-05
+      },
+      {
+        "rank": 414,
+        "feature": "V117",
+        "mean_abs_shap": 8.718044409761205e-05
+      },
+      {
+        "rank": 415,
+        "feature": "V252",
+        "mean_abs_shap": 5.6722496083239093e-05
+      },
+      {
+        "rank": 416,
+        "feature": "V28",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "rank": 417,
+        "feature": "V68",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "rank": 418,
+        "feature": "V89",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "rank": 419,
+        "feature": "V120",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "rank": 420,
+        "feature": "V122",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "rank": 421,
+        "feature": "V192",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "rank": 422,
+        "feature": "V240",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "rank": 423,
+        "feature": "V305",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "rank": 424,
+        "feature": "V328",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "rank": 425,
+        "feature": "id_02",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "rank": 426,
+        "feature": "id_20",
+        "mean_abs_shap": 0.0
+      }
+    ]
+  }
+}
