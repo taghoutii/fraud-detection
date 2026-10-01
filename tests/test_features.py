@@ -37,3 +37,21 @@ def test_amount_features_no_leakage():
     assert out.iloc[2]["card1_amt_std"] == pytest.approx(np.std([10.0, 20.0], ddof=1))
     expected_z = (100.0 - 15.0) / np.std([10.0, 20.0], ddof=1)
     assert out.iloc[2]["card1_amt_zscore"] == pytest.approx(expected_z)
+
+def test_tied_timestamps_keep_input_order_regardless_of_later_rows():
+    #same card, same second: which tx counts as "earlier" must not depend on what else is
+    #in the frame (unstable sorts reshuffled ties once test-period rows were appended)
+    rng = np.random.default_rng(0)
+    n = 500
+    df = pd.DataFrame({
+        "TransactionID": np.arange(n),
+        "card1": rng.integers(0, 5, n),
+        "TransactionDT": rng.integers(0, 40, n),   # heavy timestamp ties
+        "TransactionAmt": rng.uniform(1, 100, n).round(2),
+    })
+    later = df.assign(TransactionID=df["TransactionID"] + n, TransactionDT=df["TransactionDT"] + 1000)
+
+    for fn in (add_time_since_last_txn, add_amount_features):
+        alone = fn(df.copy(), "card1").set_index("TransactionID").sort_index()
+        full = fn(pd.concat([df, later], ignore_index=True), "card1").set_index("TransactionID").sort_index()
+        pd.testing.assert_frame_equal(alone, full.loc[alone.index])

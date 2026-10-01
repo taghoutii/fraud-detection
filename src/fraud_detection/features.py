@@ -12,7 +12,7 @@ def add_velocity_features(df: pd.DataFrame, entity_col: str, time_col: str = "Tr
     Transaction velocity: count of transactions by the same entity (e.g. card1)
     in rolling time windows. Must be computed strictly on PAST data per row
     """
-    df = df.sort_values(time_col).copy()
+    df = df.sort_values(time_col, kind="stable").copy() #stable so tied timestamps keep a deterministic order, same as cv.py
     df[f"{entity_col}_txn_count_1h"] = (
         df.groupby(entity_col)[time_col]
         .transform(lambda s: s.rolling(window=len(s), min_periods=1)
@@ -22,7 +22,7 @@ def add_velocity_features(df: pd.DataFrame, entity_col: str, time_col: str = "Tr
 
 def add_time_since_last_txn(df: pd.DataFrame, entity_col: str, time_col: str = "TransactionDT") -> pd.DataFrame:
     #how long has it been since this card's previous transaction?
-    df = df.sort_values(time_col).copy()
+    df = df.sort_values(time_col, kind="stable").copy() #stable so tied timestamps keep a deterministic order, same as cv.py
     df[f"{entity_col}_time_since_last"] = (
         df.groupby(entity_col)[time_col].diff().fillna(-1)
     )
@@ -45,7 +45,7 @@ def add_amount_features(df: pd.DataFrame, entity_col: str = "card1", time_col: s
     pandas (NaN); we set those to 0 and fall back to the raw amount difference
     for the z-score (std replaced with 1) rather than leaking future data in.
     """
-    df = df.sort_values(time_col).copy()
+    df = df.sort_values(time_col, kind="stable").copy() #stable so tied timestamps keep a deterministic order, same as cv.py
     grp = df.groupby(entity_col)["TransactionAmt"]
     expanding_mean = grp.transform(lambda s: s.shift(1).expanding().mean())
     expanding_std = grp.transform(lambda s: s.shift(1).expanding().std())
