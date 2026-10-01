@@ -1,0 +1,13 @@
+# Serving-only dependencies for the API (app/) and its Docker image.
+# Pinned to the same versions as requirements.txt so the model unpickles exactly as trained.
+# Imported by app/:
+fastapi==0.111.0
+pydantic==2.7.1
+pandas==2.2.2
+numpy==1.26.4
+joblib==1.4.2
+# Not imported by name, but needed to unpickle models/final_pipeline.joblib (sklearn Pipeline + LGBMClassifier):
+scikit-learn==1.4.2
+lightgbm==4.3.0
+# ASGI server:
+uvicorn[standard]==0.30.0
