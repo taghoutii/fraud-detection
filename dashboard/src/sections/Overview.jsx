@@ -3,8 +3,7 @@ import { useData, num, pct, fixed } from "../lib/data.js";
 import { SECTIONS } from "../sections.js";
 
 const MISSION =
-  "Real-time fraud scoring for card transactions — built to catch the majority of fraud " +
-  "while keeping false alarms low enough to act on.";
+  "Real-time fraud scoring for card transactions";
 
 export default function Overview({ onNavigate }) {
   const { data: ov, error } = useData("overview.json");
@@ -18,7 +17,7 @@ export default function Overview({ onNavigate }) {
     <section className="section">
       <header className="overview-head">
         <div className="eyebrow">Fraud Risk Console</div>
-        <p className="mission">{MISSION}</p>
+        <h1 className="mission">{MISSION}</h1>
       </header>
 
       <div className="hero">
