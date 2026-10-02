@@ -1,0 +1,1 @@
+{"model":"LightGBM","test_pr_auc":0.5784221215136947,"test_roc_auc":0.9106831534941481,"chosen_threshold":0.13,"n_transactions":590540,"n_train":472432,"n_test":118108,"train_fraud_rate":0.03513521522674162,"test_fraud_rate":0.034409184813899145,"test_span_days":41.9,"n_features":426}

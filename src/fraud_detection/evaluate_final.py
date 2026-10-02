@@ -1,10 +1,6 @@
 """
-Stage 6 final evaluation + explainability. The first and only place the held-out
-time-based test set (data/processed/test.parquet) is used.
-
-    python -m src.fraud_detection.evaluate_final
-
-Everything is saved under reports/results/ for the dashboard to load (no plots here):
+evaluation + explainability. 
+Everything is saved under reports/results/ for the dashboard to load:
     test_predictions.parquet          one row per test txn: ids, true label, probability, label at 0.5
     threshold_search.json             precision/recall/F1/flag counts across thresholds (test set)
     final_classification_report.json  chosen threshold, the assumption behind it, test metrics at it
@@ -49,7 +45,6 @@ MODEL_PATH = ROOT / "models" / "final_pipeline.joblib"
 #Business assumption behind the operating threshold: missing a fraud costs far more
 #than a false alarm, so the fraud team commits to catching at least 60% of fraud
 #(recall >= 0.60). Among thresholds meeting that, we want the fewest false alarms per
-#flagged transaction, i.e. the highest precision. Ties go to the higher recall.
 MIN_RECALL = 0.60
 THRESHOLD_ASSUMPTION = (
     f"Catch at least {MIN_RECALL:.0%} of fraud (recall >= {MIN_RECALL}); among thresholds that do, "
