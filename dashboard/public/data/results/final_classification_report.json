@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "created_at": "2026-10-01T22:14:22+00:00",
+    "model_path": "models/final_pipeline.joblib",
+    "n_test_rows": 118108,
+    "n_features": 426,
+    "test_fraud_rate": 0.034409184813899145,
+    "test_time_range": [
+      12192900,
+      15811131
+    ],
+    "seed": 42
+  },
+  "threshold_rule": {
+    "assumption": "Catch at least 60% of fraud (recall >= 0.6); among thresholds that do, pick the one with the highest precision (fewest false alarms per flagged transaction).",
+    "min_recall": 0.6,
+    "objective": "max precision subject to recall >= min_recall"
+  },
+  "threshold_selection": {
+    "chosen_threshold": 0.13,
+    "selected_on": "validation: last time-ordered CV fold of the training data (test set not used)",
+    "validation_rows": 78742,
+    "validation_fraud_rate": 0.03834040283457367,
+    "validation_metrics_at_threshold": {
+      "precision": 0.674582560296846,
+      "recall": 0.602186154355747,
+      "f1": 0.6363318165908295,
+      "n_flagged": 2695
+    },
+    "threshold_test_set_would_pick": 0.14
+  },
+  "test_metrics_at_chosen_threshold": {
+    "threshold": 0.13,
+    "precision": 0.44815751445086704,
+    "recall": 0.6104822834645669,
+    "f1": 0.5168749999999999,
+    "roc_auc": 0.9106831534941481,
+    "pr_auc": 0.5784221215136947,
+    "n_flagged": 5536,
+    "flag_rate": 0.04687235411657127,
+    "confusion_matrix": {
+      "tn": 110989,
+      "fp": 3055,
+      "fn": 1583,
+      "tp": 2481
+    }
+  },
+  "test_metrics_at_0_5": {
+    "threshold": 0.5,
+    "precision": 0.6754767480762797,
+    "recall": 0.4968011811023622,
+    "f1": 0.5725223309230115,
+    "roc_auc": 0.9106831534941481,
+    "pr_auc": 0.5784221215136947,
+    "n_flagged": 2989,
+    "flag_rate": 0.02530734581908084,
+    "confusion_matrix": {
+      "tn": 113074,
+      "fp": 970,
+      "fn": 2045,
+      "tp": 2019
+    }
+  },
+  "classification_report_at_chosen_threshold": {
+    "legit": {
+      "precision": 0.9859378886401592,
+      "recall": 0.9732120935779173,
+      "f1-score": 0.9795336604652805,
+      "support": 114044.0
+    },
+    "fraud": {
+      "precision": 0.44815751445086704,
+      "recall": 0.6104822834645669,
+      "f1-score": 0.516875,
+      "support": 4064.0
+    },
+    "accuracy": 0.9607308565042165,
+    "macro avg": {
+      "precision": 0.7170477015455131,
+      "recall": 0.7918471885212421,
+      "f1-score": 0.7482043302326402,
+      "support": 118108.0
+    },
+    "weighted avg": {
+      "precision": 0.9674333043553919,
+      "recall": 0.9607308565042165,
+      "f1-score": 0.9636139531115796,
+      "support": 118108.0
+    }
+  }
+}

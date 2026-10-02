@@ -1,53 +1,107 @@
-# fraud-detection-pipeline
+# Fraud Detection Pipeline
 
-Production-style fraud detection pipeline built on the IEEE-CIS Fraud Detection dataset (Kaggle).
+An end-to-end fraud detection system for card transactions, built on the
+[IEEE-CIS Fraud Detection](https://www.kaggle.com/c/ieee-fraud-detection) dataset: 590,540
+transactions, 3.5% fraud. It covers the full path from raw CSVs to a served model:
+- **A leakage-aware data pipeline.** The train/test split is by time, not at random. Encoders are
+  fitted on the training period only. Behavioral features (transaction velocity, time since the
+  card's last transaction, how unusual the amount is for the card) look only backward in time.
+- **A custom cross-validation splitter** that keeps every fold in time order while guaranteeing
+  each validation fold has enough fraud cases to score.
+- **Model selection and tuning** across five candidates, tracked in MLflow.
+- **A one-time evaluation on a held-out test set**, with SHAP explanations.
+- **A FastAPI service in Docker, and a React dashboard** that reports every result.
 
-## Milestones
+## Results
 
-- **v0.1-data-pipeline** — covers Stages 1, 2, 4, and 4b: the raw data loader
-  and memory-reduction utility, missing-value handling and frequency encoding
-  for categoricals, the time-based train/test split, and the
-  `TimeAwareStratifiedSplit` expanding-window CV splitter. The name reflects
-  when the tag was cut, not just the data-loading/preprocessing stages — by
-  the time it was tagged, the time-based split and CV splitter work had
-  already landed on the same commit.
+All numbers are from the held-out test set: the most recent 20% of transactions (118,108 rows,
+about 42 days). It was used once, after every modeling decision had been made.
 
-## Running the service
+| | Test set |
+|---|---|
+| **PR-AUC** (average precision) | **0.578**, about 17× the 0.034 no-skill baseline |
+| ROC-AUC | 0.911 |
+| At the production threshold (0.13) | catches 61% of fraud; 45% of flagged transactions are fraud; 4.7% of traffic flagged |
 
-The FastAPI app in `app/` serves `models/final_pipeline.joblib` (tuned LightGBM) and flags
-a transaction as fraud when its probability is >= the threshold chosen in Stage 6, which
-is read from `reports/results/final_classification_report.json` at startup.
+The model is a tuned LightGBM. In time-ordered cross-validation it beat XGBoost, random forest
+and two logistic-regression baselines on PR-AUC (0.584 vs 0.555 for the runner-up), and tuning
+raised it to 0.621. PR-AUC is the headline metric because at a 3.5% fraud rate, ROC-AUC and
+accuracy look good even for weak models.
 
-- `GET /health` returns status, feature count and the threshold in use.
-- `POST /predict` takes one transaction and returns `{"fraud_probability", "is_fraud", "threshold_used"}`.
+For context, the winning solutions to the original Kaggle competition reached about 0.95
+ROC-AUC. They used extensive feature engineering, most importantly reconstructing card-holder
+identities across transactions, and were scored on a different test set. This project
+prioritizes a sound, leakage-free evaluation and a deployable system over leaderboard feature
+mining. The 0.911 here is an honest estimate of performance on future transactions.
 
-**Input** is the 426 *processed* features the model was trained on (see `dataset.py`), not raw
-IEEE-CIS columns. Every field is required and must be a number, or `null` for "missing" (sent to the
-model as -999, as in training). Missing, non-numeric or unknown fields return a 422 that lists each
-failing field. The full schema is at `/docs`.
+## Key findings
 
-**Locally:**
+**Fraud patterns drift over time.** The threshold was chosen on the most recent validation
+period and then applied unchanged to the later test period. Recall held (60% → 61%), but
+precision dropped from 67% to 45%: the model still finds the fraud, yet more of what it flags
+is legitimate. In production, alert precision is the metric to watch for retraining.
+
+**Scores rank well but overstate the odds above about 0.2.** Transactions scored around 0.85
+turn out to be fraud only 49% of the time. Ranking quality is strong (ROC-AUC 0.911), so
+threshold decisions are sound. Any use of the score as a literal probability, such as
+expected-loss estimates, needs a calibration step first.
+
+## Running it
+
+**Environment** (Python 3.12, managed with [uv](https://github.com/astral-sh/uv)):
 
 ```bash
-pip install -r requirements-serve.txt
-uvicorn app.main:app --port 8000
+uv venv --python 3.12
+uv pip install -r requirements.txt -r requirements-dev.txt
+pytest                                   # 46 tests, no data needed
 ```
 
-**With Docker:**
+**Pipeline.** Retraining needs the Kaggle data in `data/raw/`. The saved model and results are
+already committed, so this step is optional.
 
 ```bash
-docker build -t fraud-api .
-docker run -p 8000:8000 fraud-api
+kaggle competitions download -c ieee-fraud-detection -p data/raw && unzip data/raw/ieee-fraud-detection.zip -d data/raw
+python -m src.fraud_detection.run_experiments       # builds processed data, CV, tuning, saves the model
+python -m src.fraud_detection.evaluate_final        # one-time test-set evaluation + SHAP
 ```
 
-The image installs `requirements-serve.txt` (only what `app/` imports or needs to unpickle the model),
-not the full `requirements.txt`. Training-only packages like shap, mlflow and xgboost aren't needed to
-serve predictions and would add several hundred MB to the image.
-
-**Example request.** This builds a payload from a real processed test transaction in the committed SHAP sample:
+**API.** It takes the 426 processed features of one transaction and returns
+`{fraud_probability, is_fraud, threshold_used}`. Schema at `/docs`.
 
 ```bash
-python -c "import json, pandas as pd; from app.artifacts import FEATURE_NAMES; r = pd.read_parquet('reports/results/shap_sample.parquet').iloc[0]; json.dump({k: None if pd.isna(r[k]) else float(r[k]) for k in FEATURE_NAMES}, open('payload.json', 'w'))"
-curl -X POST localhost:8000/predict -H "Content-Type: application/json" -d @payload.json
-# {"fraud_probability":0.0390...,"is_fraud":false,"threshold_used":0.13}
+uvicorn app.main:app --port 8000                     # locally (needs requirements-serve.txt)
+docker build -t fraud-api . && docker run -p 8000:8000 fraud-api
 ```
+
+**Dashboard.** It runs from committed data, with no Python needed:
+
+```bash
+cd dashboard && npm install && npm run dev           # http://localhost:5173
+```
+
+## Repository layout
+
+```
+src/fraud_detection/    data loading, features, preprocessing, CV splitter, models,
+                        run_experiments.py (training) and evaluate_final.py (test + SHAP)
+app/                    FastAPI service (model and threshold loaded once at startup)
+dashboard/              React + Vite dashboard and the script that prepares its data
+models/                 final_pipeline.joblib, the tuned model the API serves
+reports/results/        every saved result: CV, tuning, predictions, thresholds, SHAP, calibration
+tests/                  unit tests, including leakage guards for features and encoders
+notebooks/              exploratory analysis and the time-vs-random split comparison
+config.yaml             seed, split size, CV folds, paths, MLflow experiment
+```
+
+## What I'd do next
+
+- **Serve raw transactions, not processed features.** Persist the train-fitted encoders and add
+  a per-card history store, so the API can compute velocity and amount features itself.
+- **Calibrate the scores** (isotonic or Platt scaling, fitted on validation data), so they can
+  be read as probabilities.
+- **Monitor drift and retrain on a schedule.** Track alert precision on newly labeled
+  transactions, given the drop seen on the test set.
+- **Close part of the gap to the Kaggle leaders** with card-holder identity features and
+  aggregations over them.
+- **Set the threshold on dollar cost rather than counts**, weighting missed fraud by transaction
+  amount.
