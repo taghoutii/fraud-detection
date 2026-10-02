@@ -11,13 +11,3 @@ export default function SectionHeader({ id, title }) {
   );
 }
 
-// Shell-review placeholder: a titled card with a dashed slot where the real content will go.
-export function Slot({ title, sub, note, height }) {
-  return (
-    <div className="card">
-      <h2 className="card-title">{title}</h2>
-      {sub && <p className="card-sub">{sub}</p>}
-      <div className="slot" style={height ? { "--slot-h": `${height}px` } : undefined}>{note}</div>
-    </div>
-  );
-}
