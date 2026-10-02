@@ -42,9 +42,6 @@ ROOT = Path(__file__).resolve().parents[2]
 RESULTS_DIR = ROOT / "reports" / "results"
 MODEL_PATH = ROOT / "models" / "final_pipeline.joblib"
 
-#Business assumption behind the operating threshold: missing a fraud costs far more
-#than a false alarm, so the fraud team commits to catching at least 60% of fraud
-#(recall >= 0.60). Among thresholds meeting that, we want the fewest false alarms per
 MIN_RECALL = 0.60
 THRESHOLD_ASSUMPTION = (
     f"Catch at least {MIN_RECALL:.0%} of fraud (recall >= {MIN_RECALL}); among thresholds that do, "
