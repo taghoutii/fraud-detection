@@ -18,12 +18,10 @@ from xgboost import XGBClassifier
 
 from src.fraud_detection.cv import TimeAwareStratifiedSplit
 
-#every builder names its estimator step "clf", so search spaces are always "clf__<param>"
 METRICS = ("precision", "recall", "f1", "roc_auc", "pr_auc")
 
 
 def build_logreg_pipeline(seed: int = 42) -> Pipeline:
-    #baseline: imbalance handled by reweighting the loss, no resampling
     return Pipeline([
         ("scaler", StandardScaler()),
         ("clf", LogisticRegression(class_weight="balanced", max_iter=1000, random_state=seed)),
@@ -118,12 +116,8 @@ def _take(data, idx):
 
 
 def run_cv(pipeline, X, y, time_values, n_splits: int = 5, min_pos: int = 30, threshold: float = 0.5) -> dict:
-    """
-    Expanding-window CV with TimeAwareStratifiedSplit. Returns
-    {metric: np.ndarray of per-fold scores} for every name in METRICS, all
-    computed for the fraud class (label 1). precision/recall/f1 use
-    `threshold` on predict_proba; roc_auc/pr_auc are threshold-free.
-    """
+    #Expanding-window CV with TimeAwareStratifiedSplit.
+    
     scores = {m: [] for m in METRICS}
     for train_idx, val_idx in make_cv_splits(y, time_values, n_splits, min_pos):
         model = clone(pipeline) #fresh unfitted copy per fold, so scaler/SMOTE only ever see this fold's training rows
@@ -142,7 +136,6 @@ def run_cv(pipeline, X, y, time_values, n_splits: int = 5, min_pos: int = 30, th
 
 
 def summarize_cv(results: dict) -> dict:
-    #{"pr_auc_mean": ..., "pr_auc_std": ..., ...} -- flat, so it can go straight into mlflow.log_metrics
     summary = {}
     for m, v in results.items():
         summary[f"{m}_mean"] = float(np.mean(v))
