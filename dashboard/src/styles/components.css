@@ -118,7 +118,9 @@ code {
 
 /* ---------- overview ---------- */
 .overview-head { margin-bottom: 24px; }
-.mission { font-size: 22px; line-height: 1.45; font-weight: 500; letter-spacing: -0.01em; margin: 8px 0 0; max-width: 46ch; }
+/* page title. Deliberate exception to the red-is-for-risk rule: the product headline uses the alert red (#C1121F) */
+.mission { font-size: 44px; line-height: 1.15; font-weight: 750; letter-spacing: -0.03em; margin: 8px 0 0; color: var(--risk-alert); }
+@media (max-width: 600px) { .mission { font-size: 32px; } }
 
 .hero {
   display: grid;
