@@ -1,15 +1,7 @@
 """
-Stage 5 experiment runner: cross-validates the five candidate pipelines, tunes the
-family that wins on PR-AUC, and saves everything the reporting notebook needs.
-
-    python -m src.fraud_detection.run_experiments                  # full training set
-    python -m src.fraud_detection.run_experiments --sample-n 30000 --n-iter 3   # dry run
-    python -m src.fraud_detection.run_experiments --resume         # skip models already in cv_results.json
-
-SAMPLE_N / N_ITER env vars work too (CLI args win). Outputs:
-    reports/results/cv_results.json      per-model mean/std/per-fold metrics
-    reports/results/tuning_results.json  untuned vs tuned metrics + best_params_
-    models/final_pipeline.joblib         tuned winning pipeline, refit on the full training set
+loads the cached dataset, trains and cross-validates all 5 model types using cv.py splitter, 
+runs hyperparameter tuning on the winner, and saves the results (metrics, best parameters, 
+the final trained model) to disk as files and saves the final pipeline for deploment
 """
 import argparse
 import json
@@ -19,8 +11,6 @@ import warnings
 from datetime import datetime, timezone
 from pathlib import Path
 
-#joblib probes physical cores via `wmic`, which Windows 11 no longer ships, and prints a traceback;
-#a cap below the logical core count skips the probe (costs at most one worker, OpenMP boosters unaffected)
 os.environ.setdefault("LOKY_MAX_CPU_COUNT", str(max(1, (os.cpu_count() or 2) - 1)))
 warnings.filterwarnings("ignore") #before the imports: mlflow 2.13 warns about pkg_resources on import
 
@@ -49,8 +39,8 @@ ROOT = Path(__file__).resolve().parents[2]
 RESULTS_DIR = ROOT / "reports" / "results"
 MODEL_PATH = ROOT / "models" / "final_pipeline.joblib"
 
-MIN_POS = 30        #min frauds per validation fold
-THRESHOLD = 0.5     #for precision/recall/F1 only; threshold tuning comes later (config: model.threshold_search)
+MIN_POS = 30        
+THRESHOLD = 0.5     
 
 LABELS = {
     "logreg": "LogReg (class_weight)",
@@ -237,7 +227,7 @@ def main(sample_n: int | None = None, n_iter: int = 20, resume: bool = False) ->
         param_distributions=PARAM_DISTRIBUTIONS[best_family],
         n_iter=n_iter,
         scoring="average_precision",
-        cv=cv_splits,          #TimeAwareStratifiedSplit folds, not StratifiedKFold
+        cv=cv_splits,          
         refit=True,            #best config refit on the full training set -> the pipeline we save
         random_state=seed,
         n_jobs=1,              #the boosters already use every core; parallel candidates would oversubscribe

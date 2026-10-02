@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-#engineering behavioral features
 
 def add_time_features(df: pd.DataFrame, time_col: str = "TransactionDT") -> pd.DataFrame:
     df["txn_day"] = (df[time_col] // (24 * 3600)) #get the day of the transaction
