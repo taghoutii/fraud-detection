@@ -1,0 +1,54 @@
+/*
+ * Color system. The five palette colors are the only hex values in the app;
+ * everything else is a semantic role derived from them.
+ *
+ * Red is SEMANTIC ONLY: --risk-* roles are for fraud, flagged transactions and
+ * high-risk states. Never use them for decoration, hover states or emphasis.
+ */
+:root {
+  /* palette */
+  --palette-deep-red: #780000;
+  --palette-red: #c1121f;
+  --palette-cream: #fdf0d5;
+  --palette-navy: #003049;
+  --palette-steel: #669bbc;
+
+  /* risk (red: fraud / danger only) */
+  --risk-high: var(--palette-deep-red);      /* confirmed fraud, high-risk state */
+  --risk-alert: var(--palette-red);          /* flagged transactions, alerts */
+  --risk-tint: color-mix(in srgb, var(--palette-red) 10%, var(--surface-card));
+
+  /* safe / non-fraud and neutral data accents */
+  --safe: var(--palette-steel);
+  --safe-tint: color-mix(in srgb, var(--palette-steel) 14%, var(--surface-card));
+  --accent: var(--palette-steel);
+
+  /* surfaces */
+  --surface-page: var(--palette-cream);
+  --surface-card: color-mix(in srgb, var(--palette-cream) 35%, white);
+  --surface-nav: var(--palette-navy);
+  --surface-sunken: color-mix(in srgb, var(--palette-cream) 70%, var(--palette-navy) 4%);
+
+  /* text */
+  --text-primary: var(--palette-navy);
+  --text-secondary: color-mix(in srgb, var(--palette-navy) 68%, var(--palette-cream));
+  --text-muted: color-mix(in srgb, var(--palette-navy) 45%, var(--palette-cream));
+  --text-on-nav: var(--palette-cream);
+  --text-on-nav-muted: color-mix(in srgb, var(--palette-cream) 60%, var(--palette-navy));
+
+  /* lines */
+  --border: color-mix(in srgb, var(--palette-navy) 10%, transparent);
+  --border-strong: color-mix(in srgb, var(--palette-navy) 22%, transparent);
+  --grid-line: color-mix(in srgb, var(--palette-navy) 8%, transparent);
+
+  /* shape, depth, motion */
+  --radius-card: 14px;
+  --radius-chip: 999px;
+  --shadow-card: 0 1px 2px color-mix(in srgb, var(--palette-navy) 6%, transparent),
+                 0 8px 24px -12px color-mix(in srgb, var(--palette-navy) 18%, transparent);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur: 280ms;
+
+  /* type */
+  --font-sans: "Inter Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
