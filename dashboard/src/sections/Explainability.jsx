@@ -5,11 +5,10 @@ import {
 import SectionHeader from "./SectionHeader.jsx";
 import Beeswarm from "../components/Beeswarm.jsx";
 import { Card, LegendItem, Loading, Segmented, TooltipBox } from "../components/ui.jsx";
-import { fixed, formatScore, formatValue, num, pct, sigmoid, useData } from "../lib/data.js";
+import { fixed, formatScore, formatValue, num, sigmoid, useData } from "../lib/data.js";
 import { axisProps, gridProps, mix, palette } from "../lib/theme.js";
 
-const TOP_IMPORTANCE = 15;
-const WATERFALL_TOP = 12;
+const WATERFALL_TOP = 8;
 
 export default function Explainability() {
   const [view, setView] = useState("global");
@@ -45,13 +44,12 @@ export default function Explainability() {
 
 function GlobalView({ sample, onSelect }) {
   const { data: global } = useData("shap_global.json");
-  const { data: imp } = useData("results/feature_importances.json");
   const p = palette();
   return (
     <div className="fade-in">
       <Card
         title="What drives fraud scores"
-        sub={`Top ${global?.features.length ?? 20} features by mean |SHAP| · each dot is one of ${num(sample.transactions.length)} test transactions · click a dot to explain it`}
+        sub="Each dot is a test transaction. Click one to explain it."
         action={
           <div className="legend">
             <span className="gradient-legend">
@@ -65,75 +63,6 @@ function GlobalView({ sample, onSelect }) {
       >
         {global ? <Beeswarm features={global.features} transactions={sample.transactions} onSelect={onSelect} /> : <Loading height={640} />}
       </Card>
-
-      {imp ? <Importances imp={imp} /> : <Loading height={460} />}
-    </div>
-  );
-}
-
-function Importances({ imp }) {
-  const native = imp.lightgbm_native.features;
-  const shap = imp.mean_abs_shap.features;
-  const totalGain = native.reduce((s, f) => s + f.gain, 0);
-  const shapRank = new Map(shap.map((f) => [f.feature, f.rank]));
-  const gainRank = new Map(native.map((f) => [f.feature, f.rank]));
-
-  const gainData = native.slice(0, TOP_IMPORTANCE).map((f) => ({
-    feature: f.feature, value: f.gain / totalGain, other: shapRank.get(f.feature), split: f.split,
-  }));
-  const shapData = shap.slice(0, TOP_IMPORTANCE).map((f) => ({
-    feature: f.feature, value: f.mean_abs_shap, other: gainRank.get(f.feature),
-  }));
-  // the sharpest disagreement among the top features of either ranking
-  const gaps = [...gainData.map((d) => ({ ...d, from: "gain" })), ...shapData.map((d) => ({ ...d, from: "shap" }))]
-    .map((d) => ({ ...d, own: d.from === "gain" ? gainRank.get(d.feature) : shapRank.get(d.feature) }))
-    .sort((a, b) => (b.other - b.own) - (a.other - a.own));
-  const g = gaps[0];
-  const overlap = gainData.filter((d) => shapData.some((s) => s.feature === d.feature)).length;
-
-  return (
-    <>
-      <div className="importance-note">
-        <strong>The two rankings disagree, which is expected.</strong> Gain credits features the trees split on most,
-        while mean |SHAP| measures how much each feature actually moves individual scores. Only {overlap} of the top{" "}
-        {TOP_IMPORTANCE} features appear in both lists; <code>{g.feature}</code> is #{g.own} by {g.from === "gain" ? "gain" : "SHAP"} but
-        #{g.other} by {g.from === "gain" ? "SHAP" : "gain"}.
-      </div>
-      <div className="grid grid-2">
-        <Card title="LightGBM native importance" sub="Share of total split gain · how the trees were built">
-          <ImportanceChart rows={gainData} format={(v) => pct(v)} otherLabel="SHAP rank" color={palette().navy} />
-        </Card>
-        <Card title="Mean |SHAP| importance" sub="Average impact on a transaction's score (log-odds)">
-          <ImportanceChart rows={shapData} format={(v) => fixed(v)} otherLabel="Gain rank" color={palette().steel} />
-        </Card>
-      </div>
-    </>
-  );
-}
-
-
-function ImportanceChart({ rows, format, otherLabel, color }) {
-  const p = palette();
-  return (
-    <div style={{ height: TOP_IMPORTANCE * 26 + 30 }}>
-      <ResponsiveContainer>
-        <BarChart data={rows} layout="vertical" margin={{ top: 4, right: 56, left: 8, bottom: 4 }} barCategoryGap="22%">
-          <CartesianGrid {...gridProps()} horizontal={false} vertical />
-          <XAxis type="number" {...axisProps()} tickFormatter={format} />
-          <YAxis type="category" dataKey="feature" {...axisProps()} width={170} interval={0} />
-          <Tooltip
-            cursor={{ fill: p.navy, fillOpacity: 0.04 }}
-            content={({ active, payload }) => active && payload?.length ? (
-              <TooltipBox title={payload[0].payload.feature} rows={[
-                ["Importance", format(payload[0].payload.value), color],
-                [otherLabel, `#${payload[0].payload.other}`],
-              ]} />
-            ) : null}
-          />
-          <Bar dataKey="value" fill={color} radius={[0, 4, 4, 0]} animationDuration={600}
-            label={{ position: "right", formatter: format, fill: p.navy, fillOpacity: 0.7, fontSize: 11 }} />
-        </BarChart>
-      </ResponsiveContainer>
     </div>
   );
 }
@@ -199,7 +128,6 @@ function LocalView({ sample, txId, setTxId }) {
 function TransactionDetail({ tx, base, threshold }) {
   const { data: chunk } = useData(`shap_local/${String(tx.chunk).padStart(2, "0")}.json`);
   const row = chunk?.rows[String(tx.id)];
-  const outcome = outcomeOf(tx);
 
   const contribs = useMemo(() => {
     if (!row) return null;
@@ -224,20 +152,17 @@ function TransactionDetail({ tx, base, threshold }) {
             <span className="chip-dot" style={{ background: tx.is_fraud ? "var(--risk-high)" : "var(--safe)" }} />
             {tx.is_fraud ? "Confirmed fraud" : "Legitimate"}
           </span>
-          <span className="chip chip-neutral">{OUTCOMES[outcome].label}</span>
         </div>
       </div>
 
       <div className="detail-stats">
         <ScoreGauge score={tx.proba} threshold={threshold} />
         <div className="detail-stat"><div className="stat-label">Amount</div><div className="detail-stat-value">{tx.amount === null ? "—" : `$${formatValue(tx.amount)}`}</div></div>
-        <div className="detail-stat"><div className="stat-label">Decision threshold</div><div className="detail-stat-value">{threshold}</div></div>
       </div>
 
       {contribs ? (
         <>
-          <Summary contribs={contribs} />
-          <Waterfall contribs={contribs} base={base} threshold={threshold} score={tx.proba} />
+          <Waterfall contribs={contribs} base={base} threshold={threshold} />
         </>
       ) : <Loading height={460} />}
     </div>
@@ -257,19 +182,7 @@ function ScoreGauge({ score, threshold }) {
   );
 }
 
-function Summary({ contribs }) {
-  const up = contribs.filter((c) => c.shap > 0).slice(0, 2);
-  const down = contribs.filter((c) => c.shap < 0).slice(0, 1);
-  const name = (c) => <><code>{c.feature}</code> ({formatValue(c.value)})</>;
-  return (
-    <p className="detail-summary">
-      {up.length > 0 && <>Pushed toward fraud most by {name(up[0])}{up[1] && <> and {name(up[1])}</>}. </>}
-      {down.length > 0 && <>Strongest pull back toward legitimate: {name(down[0])}.</>}
-    </p>
-  );
-}
-
-function Waterfall({ contribs, base, threshold, score }) {
+function Waterfall({ contribs, base, threshold }) {
   const p = palette();
   const top = contribs.slice(0, WATERFALL_TOP);
   const rest = contribs.slice(WATERFALL_TOP);
@@ -298,7 +211,7 @@ function Waterfall({ contribs, base, threshold, score }) {
       <div className="waterfall-head">
         <div>
           <div className="card-title">How the score was built</div>
-          <div className="card-sub">From a typical transaction ({formatScore(sigmoid(base))}) to this one ({formatScore(score)})</div>
+          <div className="card-sub">From a typical transaction to this one.</div>
         </div>
         <div className="legend">
           <LegendItem color={p.red} label="Pushes toward fraud" />
@@ -326,10 +239,6 @@ function Waterfall({ contribs, base, threshold, score }) {
           </BarChart>
         </ResponsiveContainer>
       </div>
-      <p className="footnote">
-        Bars add up in log-odds from the typical transaction's score to this one's; the axis is log-odds, labels are probabilities.
-        All 426 features are included: the last bar sums the {rest.length} smaller contributions.
-      </p>
     </div>
   );
 }

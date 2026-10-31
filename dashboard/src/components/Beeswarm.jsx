@@ -71,7 +71,7 @@ export default function Beeswarm({ features, transactions, onSelect }) {
     features.forEach((f, row) => {
       const cy = PAD.top + row * ROW_H + ROW_H / 2;
       if (row % 2 === 0) {
-        ctx.fillStyle = mix(p.navy, "#ffffff", 0.97);
+        ctx.fillStyle = mix(p.cream, p.navy, 0.04); // bands a shade darker than the cream card
         ctx.fillRect(LABEL_W, cy - ROW_H / 2, plotW, ROW_H);
       }
       ctx.fillStyle = p.navy;

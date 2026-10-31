@@ -16,23 +16,25 @@
   /* risk (red: fraud / danger only) */
   --risk-high: var(--palette-deep-red);      /* confirmed fraud, high-risk state */
   --risk-alert: var(--palette-red);          /* flagged transactions, alerts */
-  --risk-tint: color-mix(in srgb, var(--palette-red) 10%, var(--surface-card));
+  /* tints are pinned to the palette and white (~#f8e3db, ~#e9ece9), not to a surface token,
+     so they don't shift when the surfaces change */
+  --risk-tint: color-mix(in srgb, var(--palette-red) 10%, color-mix(in srgb, var(--palette-cream) 35%, white));
 
   /* safe / non-fraud and neutral data accents */
   --safe: var(--palette-steel);
-  --safe-tint: color-mix(in srgb, var(--palette-steel) 14%, var(--surface-card));
+  --safe-tint: color-mix(in srgb, var(--palette-steel) 14%, color-mix(in srgb, var(--palette-cream) 35%, white));
   --accent: var(--palette-steel);
 
-  /* surfaces */
-  --surface-page: var(--palette-cream);
-  --surface-card: color-mix(in srgb, var(--palette-cream) 35%, white);
+  /* surfaces: near-white page, cream cards; fields and selected toggles use the page tone */
+  --surface-page: color-mix(in srgb, var(--palette-cream) 35%, white);
+  --surface-card: var(--palette-cream);
   --surface-nav: var(--palette-navy);
-  --surface-sunken: color-mix(in srgb, var(--palette-cream) 70%, var(--palette-navy) 4%);
+  --surface-sunken: color-mix(in srgb, var(--palette-cream) 93%, var(--palette-navy));
 
   /* text */
   --text-primary: var(--palette-navy);
   --text-secondary: color-mix(in srgb, var(--palette-navy) 68%, var(--palette-cream));
-  --text-muted: color-mix(in srgb, var(--palette-navy) 45%, var(--palette-cream));
+  --text-muted: color-mix(in srgb, var(--palette-navy) 62%, var(--palette-cream));
   --text-on-nav: var(--palette-cream);
   --text-on-nav-muted: color-mix(in srgb, var(--palette-cream) 60%, var(--palette-navy));
 
