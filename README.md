@@ -10,7 +10,7 @@ transactions, 3.5% fraud. It covers the full path from raw CSVs to a served mode
   each validation fold has enough fraud cases to score.
 - **Model selection and tuning** across five candidates, tracked in MLflow.
 - **A one-time evaluation on a held-out test set**, with SHAP explanations.
-- **A FastAPI service in Docker, and a React dashboard** that reports every result.
+- **A FastAPI service in Docker, and a React dashboard** that presents the key results.
 
 ## Results
 
@@ -85,10 +85,13 @@ cd dashboard && npm install && npm run dev           # http://localhost:5173
 src/fraud_detection/    data loading, features, preprocessing, CV splitter, models,
                         run_experiments.py (training) and evaluate_final.py (test + SHAP)
 app/                    FastAPI service (model and threshold loaded once at startup)
+Dockerfile              serving image for the API
 dashboard/              React + Vite dashboard and the script that prepares its data
 models/                 final_pipeline.joblib, the tuned model the API serves
 reports/results/        every saved result: CV, tuning, predictions, thresholds, SHAP, calibration
+reports/figures/        EDA plots
 tests/                  unit tests, including leakage guards for features and encoders
+.github/workflows/      CI (runs the tests)
 notebooks/              exploratory analysis and the time-vs-random split comparison
 config.yaml             seed, split size, CV folds, paths, MLflow experiment
 ```
