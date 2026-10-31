@@ -8,6 +8,7 @@
 **/*.pyc
 data/
 notebooks/
+dashboard/
 tests/
 mlruns/
 reports/figures/
