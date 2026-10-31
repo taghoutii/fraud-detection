@@ -4,7 +4,7 @@ import {
   ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from "recharts";
 import SectionHeader from "./SectionHeader.jsx";
-import { Card, Insight, LegendItem, Loading, Segmented, TooltipBox } from "../components/ui.jsx";
+import { Card, Insight, LegendItem, Loading, TooltipBox } from "../components/ui.jsx";
 import { useData, fixed, num, pct } from "../lib/data.js";
 import { confusionAt, decisionCurves, preparePredictions } from "../lib/curves.js";
 import { axisProps, gridProps, mix, palette } from "../lib/theme.js";
@@ -33,13 +33,13 @@ export default function Decisioning() {
 
       <div className="grid grid-2">
         <DriftFinding report={report} />
-        <CalibrationFinding calibration={calibration} report={report} />
+        <CalibrationFinding calibration={calibration} />
       </div>
 
       <Card
         className="mt"
         title="Threshold trade-off"
-        sub={`Production rule: maximize precision while catching at least ${pct(report.threshold_rule.min_recall, 0)} of fraud. Chosen on validation data, applied unchanged to test.`}
+        sub={`Maximize precision while catching at least ${pct(report.threshold_rule.min_recall, 0)} of fraud.`}
         action={<ThresholdControl t={t} chosen={chosen} onChange={setThreshold} />}
       >
         <div className="threshold-layout">
@@ -49,24 +49,13 @@ export default function Decisioning() {
       </Card>
 
       <div className="grid grid-2 mt">
-        <Card title="Confusion matrix" sub={`All ${num(report.meta.n_test_rows)} test transactions at threshold ${t.toFixed(2)}`}>
-          {prep ? <ConfusionMatrix prep={prep} t={t} /> : <Loading height={260} />}
-        </Card>
-        <CalibrationCard calibration={calibration} />
-        <Card
-          title="ROC curve"
-          sub={curves ? `AUC ${fixed(curves.rocAuc)} · computed from every test prediction` : "Computing…"}
-          action={<div className="legend"><LegendItem color={palette().navy} label={`At ${t.toFixed(2)}`} /></div>}
-        >
-          {curves ? <RocChart curves={curves} prep={prep} t={t} /> : <Loading height={280} />}
-        </Card>
         <Card
           title="Precision–recall curve"
-          sub={curves ? `Average precision ${fixed(curves.averagePrecision)} · no-skill line at the ${pct(prep.P / prep.n, 1)} fraud rate` : "Computing…"}
-          action={<div className="legend"><LegendItem color={palette().navy} label={`At ${t.toFixed(2)}`} /></div>}
+          sub={curves ? `Average precision ${fixed(curves.averagePrecision)}; the dot marks the current threshold.` : "Computing…"}
         >
           {curves ? <PrChart curves={curves} prep={prep} t={t} /> : <Loading height={280} />}
         </Card>
+        <CalibrationCard calibration={calibration} />
       </div>
     </section>
   );
@@ -81,37 +70,39 @@ function DriftFinding({ report }) {
     <Insight
       icon="trend"
       eyebrow="Finding · monitor in production"
-      title="Fraud patterns are shifting: precision fell while recall held"
+      title="Precision fell while recall held"
       metrics={[
         { value: `${pct(val.precision, 0)} → ${pct(test.precision, 0)}`, label: "precision, validation → test" },
         { value: `${pct(val.recall, 0)} → ${pct(test.recall, 0)}`, label: "recall, validation → test" },
       ]}
     >
-      The threshold kept its promise on unseen, later transactions: it still catches over{" "}
-      {Math.floor(test.recall * 10) * 10}% of fraud. But a larger share of what it flags is now legitimate, the signature of
-      drift between when the model learned and when it was tested. Alert precision is the early-warning metric to track.
+      On later, unseen transactions the threshold still catches over {Math.floor(test.recall * 10) * 10}% of fraud, but more
+      of what it flags is legitimate, a drift signal to monitor.
     </Insight>
   );
 }
 
-function CalibrationFinding({ calibration, report }) {
+// first score band where the average score overstates the observed fraud rate
+function overconfidentFrom(bins) {
+  return bins.find((b) => b.mean_predicted - b.observed_fraud_rate > 0.05);
+}
+
+function CalibrationFinding({ calibration }) {
   const bins = calibration.uniform_bins.filter((b) => b.count > 0);
-  const firstOver = bins.find((b) => b.mean_predicted - b.observed_fraud_rate > 0.05);
+  const firstOver = overconfidentFrom(bins);
   const high = bins.find((b) => b.bin_lower <= 0.85 && 0.85 < b.bin_upper);
   return (
     <Insight
       icon="gauge"
       eyebrow="Finding · read scores as ranks"
-      title={`Scores above ~${firstOver.bin_lower.toFixed(1)} overstate the odds of fraud`}
+      title={`Scores above ~${firstOver.bin_lower.toFixed(1)} overstate fraud odds`}
       metrics={[
-        { value: fixed(high.mean_predicted, 2), label: "average score in that band" },
+        { value: fixed(high.mean_predicted, 2), label: "average score" },
         { value: pct(high.observed_fraud_rate, 0), label: "actually fraud" },
-        { value: fixed(report.test_metrics_at_chosen_threshold.roc_auc), label: "ROC-AUC: ranking holds" },
       ]}
     >
-      Transactions scored around {fixed(high.mean_predicted, 2)} turn out to be fraud {pct(high.observed_fraud_rate, 0)} of
-      the time. The ordering is sound, so the higher score is still the riskier transaction, which is all the threshold
-      needs. Wherever a literal probability matters, such as expected-loss estimates, the scores should be recalibrated first.
+      Transactions scored around {fixed(high.mean_predicted, 2)} are fraud only {pct(high.observed_fraud_rate, 0)} of the
+      time. Ranking is sound, so the threshold holds, but literal probabilities need recalibration.
     </Insight>
   );
 }
@@ -133,7 +124,7 @@ function ThresholdControl({ t, chosen, onChange }) {
       />
       <span className="threshold-value">{t.toFixed(2)}</span>
       <button className="reset" disabled={Math.abs(t - chosen) < 1e-9} onClick={() => onChange(null)}>
-        Reset to {chosen}
+        Reset
       </button>
     </div>
   );
@@ -151,10 +142,9 @@ function ThresholdChart({ rows, t, chosen, minRecall, onPick }) {
             <CartesianGrid {...gridProps()} />
             <XAxis dataKey="threshold" type="number" domain={[0, 1]} ticks={PCT_TICKS} {...axisProps()} tickFormatter={(v) => v.toFixed(1)} />
             <YAxis domain={[0, 1]} ticks={PCT_TICKS} {...axisProps()} tickFormatter={(v) => pct(v, 0)} />
-            <ReferenceArea x1={0} x2={recallOkUntil} fill={p.steel} fillOpacity={0.1} ifOverflow="hidden"
-              label={{ value: `recall ≥ ${pct(minRecall, 0)}`, position: "insideTopLeft", fill: p.navy, fillOpacity: 0.6, fontSize: 11 }} />
+            <ReferenceArea x1={0} x2={recallOkUntil} fill={p.steel} fillOpacity={0.1} ifOverflow="hidden" />
             <ReferenceLine x={chosen} stroke={p.navy} strokeDasharray="4 4"
-              label={{ value: `Production ${chosen}`, position: "top", fill: p.navy, fontSize: 11, fontWeight: 600 }} />
+              label={{ value: "Production", position: "top", fill: p.navy, fontSize: 11, fontWeight: 600 }} />
             {Math.abs(t - chosen) > 1e-9 && <ReferenceLine x={t} stroke={p.navy} strokeOpacity={0.6} />}
             <Tooltip content={<ThresholdTooltip />} cursor={{ stroke: p.navy, strokeOpacity: 0.2 }} />
             <Line dataKey="precision" stroke={p.navy} strokeWidth={2} dot={false} animationDuration={600} />
@@ -210,15 +200,12 @@ function Readout({ prep, t, chosen }) {
   const delta = (a, b) => (Math.abs(t - chosen) < 1e-9 ? null : a - b);
   return (
     <div className="readout">
-      <div className="readout-title">At threshold {t.toFixed(2)}</div>
+      <div className="readout-title">At this threshold</div>
       <ReadoutRow label="Fraud caught" value={pct(c.recall)} d={delta(c.recall, base.recall)} fmt={(d) => `${d >= 0 ? "+" : "−"}${(Math.abs(d) * 100).toFixed(1)} pts`} tone="risk" />
       <ReadoutRow label="Alerts that are fraud" value={pct(c.precision)} d={delta(c.precision, base.precision)} fmt={(d) => `${d >= 0 ? "+" : "−"}${(Math.abs(d) * 100).toFixed(1)} pts`} />
-      <ReadoutRow label="F1" value={fixed(c.f1)} d={delta(c.f1, base.f1)} fmt={(d) => `${d >= 0 ? "+" : "−"}${Math.abs(d).toFixed(3)}`} />
       <div className="readout-divider" />
       <ReadoutRow label="Flagged for review" value={num(c.flagged)} d={delta(c.flagged, base.flagged)} fmt={(d) => `${d >= 0 ? "+" : "−"}${num(Math.abs(d))}`} />
       <ReadoutRow label="False alarms" value={num(c.fp)} d={delta(c.fp, base.fp)} fmt={(d) => `${d >= 0 ? "+" : "−"}${num(Math.abs(d))}`} />
-      <ReadoutRow label="Fraud missed" value={num(c.fn)} d={delta(c.fn, base.fn)} fmt={(d) => `${d >= 0 ? "+" : "−"}${num(Math.abs(d))}`} />
-      <div className="readout-foot">Exact counts over every test transaction{Math.abs(t - chosen) < 1e-9 ? "" : ` · change vs ${chosen}`}</div>
     </div>
   );
 }
@@ -236,63 +223,7 @@ function ReadoutRow({ label, value, d, fmt, tone }) {
   );
 }
 
-// ---------- confusion matrix ----------
-
-function ConfusionMatrix({ prep, t }) {
-  const c = confusionAt(prep, t);
-  const fraud = c.tp + c.fn;
-  const legit = c.fp + c.tn;
-  const cells = [
-    { key: "tp", label: "Fraud caught", value: c.tp, share: c.tp / fraud, of: "of fraud", cls: "cm-tp" },
-    { key: "fn", label: "Fraud missed", value: c.fn, share: c.fn / fraud, of: "of fraud", cls: "cm-fn" },
-    { key: "fp", label: "False alarms", value: c.fp, share: c.fp / legit, of: "of legitimate", cls: "cm-fp" },
-    { key: "tn", label: "Cleared", value: c.tn, share: c.tn / legit, of: "of legitimate", cls: "cm-tn" },
-  ];
-  return (
-    <div className="cm">
-      <div />
-      <div className="cm-col-head">Flagged</div>
-      <div className="cm-col-head">Not flagged</div>
-      <div className="cm-row-head">Actually fraud<span>{num(fraud)}</span></div>
-      {cells.slice(0, 2).map((cell) => <CmCell key={cell.key} {...cell} />)}
-      <div className="cm-row-head">Actually legitimate<span>{num(legit)}</span></div>
-      {cells.slice(2).map((cell) => <CmCell key={cell.key} {...cell} />)}
-    </div>
-  );
-}
-
-function CmCell({ label, value, share, of, cls }) {
-  return (
-    <div className={`cm-cell ${cls}`} title={`${label}: ${num(value)} (${pct(share)} ${of})`}>
-      <div className="cm-cell-label">{label}</div>
-      <div className="cm-cell-value">{num(value)}</div>
-      <div className="cm-cell-share">{pct(share)} {of}</div>
-    </div>
-  );
-}
-
-// ---------- ROC / PR ----------
-
-function RocChart({ curves, prep, t }) {
-  const p = palette();
-  const c = confusionAt(prep, t);
-  return (
-    <div style={{ height: 290 }}>
-      <ResponsiveContainer>
-        <ComposedChart data={curves.points} margin={{ top: 10, right: 16, left: -8, bottom: 14 }}>
-          <CartesianGrid {...gridProps()} vertical />
-          <XAxis dataKey="fpr" type="number" domain={[0, 1]} ticks={PCT_TICKS} {...axisProps()} tickFormatter={(v) => pct(v, 0)}
-            label={{ value: "False alarm rate (legitimate flagged)", position: "insideBottom", offset: -10, fill: p.navy, fillOpacity: 0.6, fontSize: 11 }} />
-          <YAxis domain={[0, 1]} ticks={PCT_TICKS} {...axisProps()} tickFormatter={(v) => pct(v, 0)} />
-          <ReferenceLine segment={[{ x: 0, y: 0 }, { x: 1, y: 1 }]} stroke={p.navy} strokeOpacity={0.25} strokeDasharray="4 4" />
-          <Tooltip content={<CurveTooltip kind="roc" />} cursor={{ stroke: p.navy, strokeOpacity: 0.2 }} />
-          <Area dataKey="tpr" type="linear" stroke={p.steel} strokeWidth={2} fill={p.steel} fillOpacity={0.14} dot={false} isAnimationActive={false} />
-          <ReferenceDot x={c.fpr} y={c.recall} r={6} fill={p.navy} stroke="#ffffff" strokeWidth={2} />
-        </ComposedChart>
-      </ResponsiveContainer>
-    </div>
-  );
-}
+// ---------- precision-recall ----------
 
 function PrChart({ curves, prep, t }) {
   const p = palette();
@@ -307,37 +238,28 @@ function PrChart({ curves, prep, t }) {
             label={{ value: "Recall (fraud caught)", position: "insideBottom", offset: -10, fill: p.navy, fillOpacity: 0.6, fontSize: 11 }} />
           <YAxis domain={[0, 1]} ticks={PCT_TICKS} {...axisProps()} tickFormatter={(v) => pct(v, 0)} />
           <ReferenceLine y={prep.P / prep.n} stroke={p.navy} strokeOpacity={0.25} strokeDasharray="4 4" />
-          <Tooltip content={<CurveTooltip kind="pr" />} cursor={{ stroke: p.navy, strokeOpacity: 0.2 }} />
+          <Tooltip content={<CurveTooltip />} cursor={{ stroke: p.navy, strokeOpacity: 0.2 }} />
           <Area dataKey="precision" type="linear" stroke={p.steel} strokeWidth={2} fill={p.steel} fillOpacity={0.14} dot={false} isAnimationActive={false} />
-          <ReferenceDot x={c.recall} y={c.precision} r={6} fill={p.navy} stroke="#ffffff" strokeWidth={2} />
+          <ReferenceDot x={c.recall} y={c.precision} r={6} fill={p.navy} stroke={p.cream} strokeWidth={2} />
         </ComposedChart>
       </ResponsiveContainer>
     </div>
   );
 }
 
-function CurveTooltip({ active, payload, kind }) {
+function CurveTooltip({ active, payload }) {
   if (!active || !payload?.length) return null;
   const pt = payload[0].payload;
-  const rows = kind === "roc"
-    ? [["Fraud caught", pct(pt.tpr)], ["False alarm rate", pct(pt.fpr, 2)]]
-    : [["Recall", pct(pt.recall)], ["Precision", pct(pt.precision)]];
-  return <TooltipBox title={`Threshold ${pt.threshold.toFixed(3)}`} rows={rows} />;
+  return <TooltipBox title={`Threshold ${pt.threshold.toFixed(3)}`} rows={[["Recall", pct(pt.recall)], ["Precision", pct(pt.precision)]]} />;
 }
 
 // ---------- calibration ----------
 
 function CalibrationCard({ calibration }) {
-  const [binning, setBinning] = useState("uniform_bins");
   const p = palette();
-  const bins = calibration[`${binning}`].filter((b) => b.count > 0);
+  const bins = calibration.uniform_bins.filter((b) => b.count > 0);
   return (
-    <Card
-      title="Calibration"
-      sub={`Predicted score vs actual fraud rate · Brier score ${calibration.brier_score.toFixed(4)}`}
-      action={<Segmented label="Binning" value={binning} onChange={setBinning}
-        options={[{ value: "uniform_bins", label: "Even width" }, { value: "quantile_bins", label: "Even count" }]} />}
-    >
+    <Card title="Calibration" sub="Average predicted score against the actual fraud rate in each score band.">
       <div style={{ height: 290 }}>
         <ResponsiveContainer>
           <ComposedChart data={bins} margin={{ top: 10, right: 16, left: -8, bottom: 14 }}>
@@ -345,8 +267,7 @@ function CalibrationCard({ calibration }) {
             <XAxis dataKey="mean_predicted" type="number" domain={[0, 1]} ticks={PCT_TICKS} {...axisProps()} tickFormatter={(v) => v.toFixed(1)}
               label={{ value: "Average predicted score", position: "insideBottom", offset: -10, fill: p.navy, fillOpacity: 0.6, fontSize: 11 }} />
             <YAxis domain={[0, 1]} ticks={PCT_TICKS} {...axisProps()} tickFormatter={(v) => pct(v, 0)} />
-            <ReferenceArea x1={0.2} x2={1} y1={0} y2={1} fill={p.navy} fillOpacity={0.035}
-              label={{ value: "below the diagonal = overconfident", position: "insideBottomRight", fill: p.navy, fillOpacity: 0.55, fontSize: 11 }} />
+            <ReferenceArea x1={overconfidentFrom(bins).bin_lower} x2={1} y1={0} y2={1} fill={p.navy} fillOpacity={0.035} />
             <ReferenceLine segment={[{ x: 0, y: 0 }, { x: 1, y: 1 }]} stroke={p.navy} strokeOpacity={0.3} strokeDasharray="4 4" />
             <Tooltip content={<CalibrationTooltip />} cursor={{ stroke: p.navy, strokeOpacity: 0.2 }} />
             <Line dataKey="observed_fraud_rate" stroke={p.steel} strokeWidth={2} isAnimationActive={false}
@@ -367,7 +288,7 @@ function BinDot({ cx, cy, payload, maxCount }) {
   if (cx == null || cy == null) return null;
   const r = 3.5 + 9 * Math.sqrt(payload.count / maxCount);
   const p = palette();
-  return <circle cx={cx} cy={cy} r={r} fill={p.navy} fillOpacity={0.85} stroke="#ffffff" strokeWidth={1.5} />;
+  return <circle cx={cx} cy={cy} r={r} fill={p.navy} fillOpacity={0.85} stroke={p.cream} strokeWidth={1.5} />;
 }
 
 function CalibrationTooltip({ active, payload }) {

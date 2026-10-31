@@ -1,11 +1,9 @@
 import { Loading } from "../components/ui.jsx";
 import { useData, num, pct, fixed } from "../lib/data.js";
-import { SECTIONS } from "../sections.js";
 
-const MISSION =
-  "Real-time fraud scoring for card transactions";
+const MISSION = "Fraud scoring for card transactions";
 
-export default function Overview({ onNavigate }) {
+export default function Overview() {
   const { data: ov, error } = useData("overview.json");
   const { data: report } = useData("results/final_classification_report.json");
 
@@ -16,7 +14,6 @@ export default function Overview({ onNavigate }) {
   return (
     <section className="section">
       <header className="overview-head">
-        <div className="eyebrow">Fraud Risk Console</div>
         <h1 className="mission">{MISSION}</h1>
       </header>
 
@@ -25,14 +22,13 @@ export default function Overview({ onNavigate }) {
           <div className="hero-model">
             <span className="live-pill"><span className="status-dot" />In production</span>
             <h1 className="hero-model-name">{ov.model}</h1>
-            <p className="hero-model-sub">Gradient-boosted trees · {ov.n_features} features · tuned</p>
+            <p className="hero-model-sub">Gradient-boosted trees</p>
           </div>
           <div className="hero-metric">
             <div className="hero-metric-value">{fixed(ov.test_pr_auc)}</div>
             <div className="hero-metric-label">PR-AUC on held-out test</div>
             <div className="hero-metric-hint">
-              {(ov.test_pr_auc / ov.test_fraud_rate).toFixed(0)}× the {fixed(ov.test_fraud_rate)} no-skill baseline ·
-              ROC-AUC {fixed(ov.test_roc_auc)}
+              {(ov.test_pr_auc / ov.test_fraud_rate).toFixed(0)}× the no-skill baseline · ROC-AUC {fixed(ov.test_roc_auc)}
             </div>
           </div>
         </div>
@@ -51,21 +47,9 @@ export default function Overview({ onNavigate }) {
       </div>
 
       <div className="chips-row">
-        <StatChip label="Transactions scored" value={num(ov.n_transactions)} hint={`${num(ov.n_train)} train · ${num(ov.n_test)} test`} />
-        <StatChip label="Fraud rate" value={pct(ov.test_fraud_rate, 2)} hint="held-out test set" tone="risk" />
-        <StatChip label="Test window" value={`${ov.test_span_days.toFixed(0)} days`} hint="most recent transactions, unseen in training" />
-        <StatChip label="Decision threshold" value={ov.chosen_threshold} hint="max precision, recall ≥ 60%" />
-      </div>
-
-      <div className="journey">
-        {SECTIONS.filter((s) => s.id !== "overview").map((s) => (
-          <button key={s.id} className="journey-card" onClick={() => onNavigate(s.id)}>
-            <span className="journey-step">{s.step}</span>
-            <span className="journey-label">{s.label}</span>
-            <span className="journey-question">{s.question}</span>
-            <span className="journey-arrow" aria-hidden="true">→</span>
-          </button>
-        ))}
+        <StatChip label="Transactions scored" value={num(ov.n_transactions)} />
+        <StatChip label="Fraud rate" value={pct(ov.test_fraud_rate, 2)} tone="risk" />
+        <StatChip label="Test window" value={`${ov.test_span_days.toFixed(0)} days`} />
       </div>
     </section>
   );
@@ -80,7 +64,7 @@ function HeroFigure({ value, label, tone }) {
   );
 }
 
-function StatChip({ label, value, hint, tone }) {
+function StatChip({ label, value, tone }) {
   return (
     <div className="stat-chip">
       <div className="stat-chip-label">
@@ -88,7 +72,6 @@ function StatChip({ label, value, hint, tone }) {
         {label}
       </div>
       <div className="stat-chip-value">{value}</div>
-      <div className="stat-chip-hint">{hint}</div>
     </div>
   );
 }

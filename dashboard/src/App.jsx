@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { SECTIONS } from "./sections.js";
-import { useData } from "./lib/data.js";
 import Overview from "./sections/Overview.jsx";
 import ModelSelection from "./sections/ModelSelection.jsx";
 import Decisioning from "./sections/Decisioning.jsx";
@@ -32,7 +31,6 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const { data: overview } = useData("overview.json");
   const View = VIEWS[active];
   return (
     <div className="shell">
@@ -62,16 +60,11 @@ export default function App() {
             </li>
           ))}
         </ul>
-
-        <div className="nav-footer">
-          <div><span className="status-dot" />Model serving · {overview?.model ?? "…"}</div>
-          <div>Decision threshold {overview?.chosen_threshold ?? "…"}</div>
-        </div>
       </nav>
 
       <main className="main">
         {/* key remounts the view so each section plays its entrance transition */}
-        <View key={active} onNavigate={go} />
+        <View key={active} />
       </main>
     </div>
   );

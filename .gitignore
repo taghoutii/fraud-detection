@@ -26,12 +26,12 @@ mlruns/
 
 # Env / secrets
 .env
+*.env
 kaggle.json
 
 # OS
 .DS_Store
 Thumbs.db
 
-.env
-*.env
-reports/results/*.log
+# Logs
+*.log
