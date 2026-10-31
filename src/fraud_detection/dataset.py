@@ -13,16 +13,15 @@ from src.fraud_detection.features import (
 from src.fraud_detection.preprocessing import handle_missing, time_based_split
 
 
-
 NON_FEATURE_COLS = ["TransactionID", "TransactionDT", "txn_day"]
 MERCHANT_COL = "addr1"
 
 
 @dataclass
 class FittedEncoders:
-    kept_columns: list            
-    merchant_freq_map: pd.Series  
-    cat_freq_maps: dict           
+    kept_columns: list
+    merchant_freq_map: pd.Series
+    cat_freq_maps: dict
 
 
 def add_behavioral_features(df: pd.DataFrame, time_col: str = "TransactionDT") -> pd.DataFrame:
@@ -63,7 +62,7 @@ def apply_encoders(df: pd.DataFrame, enc: FittedEncoders) -> pd.DataFrame:
 def build_train_test_sets(raw_dir: str | Path, time_col: str = "TransactionDT",
                           test_size: float = 0.2) -> tuple[pd.DataFrame, pd.DataFrame]:
     df = reduce_memory(load_raw(raw_dir))
-    df = add_behavioral_features(df, time_col) 
+    df = add_behavioral_features(df, time_col)
     train, test = time_based_split(df, time_col=time_col, test_size=test_size)
     del df
 

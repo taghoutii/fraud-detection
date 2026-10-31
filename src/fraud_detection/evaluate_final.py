@@ -1,5 +1,6 @@
 """
-evaluation + explainability. 
+evaluation + explainability.
+The only place the held-out test set (data/processed/test.parquet) is used.
 Everything is saved under reports/results/ for the dashboard to load:
     test_predictions.parquet          one row per test txn: ids, true label, probability, label at 0.5
     threshold_search.json             precision/recall/F1/flag counts across thresholds (test set)
