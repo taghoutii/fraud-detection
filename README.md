@@ -95,16 +95,3 @@ tests/                  unit tests, including leakage guards for features and en
 notebooks/              exploratory analysis and the time-vs-random split comparison
 config.yaml             seed, split size, CV folds, paths, MLflow experiment
 ```
-
-## What I'd do next
-
-- **Serve raw transactions, not processed features.** Persist the train-fitted encoders and add
-  a per-card history store, so the API can compute velocity and amount features itself.
-- **Calibrate the scores** (isotonic or Platt scaling, fitted on validation data), so they can
-  be read as probabilities.
-- **Monitor drift and retrain on a schedule.** Track alert precision on newly labeled
-  transactions, given the drop seen on the test set.
-- **Close part of the gap to the Kaggle leaders** with card-holder identity features and
-  aggregations over them.
-- **Set the threshold on dollar cost rather than counts**, weighting missed fraud by transaction
-  amount.
